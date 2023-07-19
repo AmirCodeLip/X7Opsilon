@@ -1,0 +1,90 @@
+{
+	"compiler": {
+		"version": "0.8.18+commit.87f61d96"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "b_data",
+						"type": "bytes"
+					},
+					{
+						"internalType": "uint256",
+						"name": "strLength",
+						"type": "uint256"
+					}
+				],
+				"name": "copyBytes",
+				"outputs": [
+					{
+						"internalType": "bytes",
+						"name": "resultData",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "b_data",
+						"type": "bytes"
+					}
+				],
+				"name": "reverseBytes",
+				"outputs": [
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Binary operations.",
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Week1/BusinessHelper/SystemInfrastructure.sol": "BinaryHelper"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Week1/BusinessHelper/SystemInfrastructure.sol": {
+			"keccak256": "0xbcd6683f44fda74317643f1042410d6e845d8d42286b694e43bbc144da4d4ea5",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8fab9f5e502241ae954e2b28978b9427f65033632ac5e874731cb247903c7b64",
+				"dweb:/ipfs/QmUurkc5RFwF6Juo9Y1svip6gqbw8Mfs3ZvF8bpJ3d2hx2"
+			]
+		}
+	},
+	"version": 1
+}
