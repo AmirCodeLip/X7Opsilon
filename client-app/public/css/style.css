@@ -16,10 +16,6 @@ body {
     font-family: robotoRegular;
 }
 
-.blur-box {
-    position: relative;
-}
-
 .blur-box::after {
     content: " ";
     position: absolute;
@@ -72,4 +68,32 @@ body {
     background-color: var(--A11111);
     color: var(--A12500);
     border-color: transparent;
+}
+
+.btn-primary {
+    color: var(--A11221);
+    background-color: transparent;
+    border-color: var(--A11221);
+}
+
+.btn-primary:hover {
+    background-color: var(--A11221);
+    color: var(--A12500);
+    border-color: transparent;
+}
+
+input {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px solid;
+    padding: 6px 8px;
+    font-family: robotoRegular;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+input:focus {
+    outline: none;
 }

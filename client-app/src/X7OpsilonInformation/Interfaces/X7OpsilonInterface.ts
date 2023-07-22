@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 
-interface Directory {
+export interface Directory {
     Id: string,
     ParentId: string,
     Directory: string,
