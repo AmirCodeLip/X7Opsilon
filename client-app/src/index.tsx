@@ -3,13 +3,29 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ContractContextProvider } from "./Contexts/ContractContext";
+import { getThemeColor } from "./ThemeProvider";
+import { CookiesProvider } from 'react-cookie';
 
+
+window.changeTheme = function (themeName: string) {
+  let themeColor = document.getElementById("themeColor");
+  if (themeColor) {
+    themeColor.innerHTML = getThemeColor(themeName);
+  }
+}
+window.changeTheme("");
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-    <App />
+    <ContractContextProvider>
+      <CookiesProvider>
+        <App />
+      </CookiesProvider>
+    </ContractContextProvider>
   </React.StrictMode>
 );
 

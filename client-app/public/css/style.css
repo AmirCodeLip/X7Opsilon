@@ -1,0 +1,75 @@
+@font-face {
+    font-family: robotoRegular;
+    src: url(../fonts/roboto/Roboto-Regular.ttf);
+}
+
+@font-face {
+    font-family: robotoThin;
+    src: url(../fonts/roboto/Roboto-Thin.ttf);
+}
+
+body {
+    font-family: robotoThin;
+}
+
+.font-roboto-regular {
+    font-family: robotoRegular;
+}
+
+.blur-box {
+    position: relative;
+}
+
+.blur-box::after {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--A19500);
+    opacity: 0.3;
+    z-index: 1;
+}
+
+.metamask-connect {
+    border: 1px solid transparent;
+}
+
+.metamask-connect:hover {
+    border-color: var(--A00000);
+}
+
+.metamask-connect:hover div {
+    color: var(--A00000);
+}
+
+.btn {
+    display: inline-block;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 2px solid;
+    padding: .375rem 2rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    font-family: robotoRegular;
+}
+
+.btn-secondary {
+    color: var(--A11111);
+    background-color: transparent;
+    border-color: var(--A11111);
+}
+
+.btn-secondary:hover {
+    background-color: var(--A11111);
+    color: var(--A12500);
+    border-color: transparent;
+}
