@@ -1,9 +1,9 @@
 import { ethers } from "ethers";
-import X7OpsilonInterface from "./X7OpsilonInformation/Interfaces/X7OpsilonInterface";
+import ContractLogic from "./X7OpsilonInformation/Interfaces/ContractLogic";
 export interface ContractContextType {
     applicationState: ApplicationStates;
     statusInfo: StatusInfo;
-    fileManager: X7OpsilonInterface;
+    fileManager: ContractLogic;
     provider: ethers.BrowserProvider | null
     setStatusInfo: React.Dispatch<React.SetStateAction<StatusInfo>>;
     setProvider: React.Dispatch<React.SetStateAction<ethers.BrowserProvider | null>>;

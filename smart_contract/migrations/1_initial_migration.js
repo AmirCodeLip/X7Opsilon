@@ -1,26 +1,31 @@
-const Math = artifacts.require("Math");
 const IDT = artifacts.require("IDT");
-const SignedMath = artifacts.require("SignedMath");
-const Strings = artifacts.require("Strings");
-const GRandom = artifacts.require("GRandom");
 const Infrastructure = artifacts.require("Infrastructure");
-const X7Opsilon = artifacts.require("X7Opsilon");
-// const X7Opsilon = artifacts.require("X7Opsilon");
+const ContractLogic = artifacts.require("ContractLogic");
+const Strings = artifacts.require("Strings");
+const UniqueIdGenerator = artifacts.require("UniqueIdGenerator");
 
 async function doDeploy(deployer, network) {
+    ///<---- Strings ---->
+    await deployer.deploy(Strings);
+    ///<---- IDT ---->
+    await deployer.link(Strings, IDT);
     await deployer.deploy(IDT);
-    await deployer.link(IDT, GRandom);
-    await deployer.deploy(GRandom);
+    ///<---- UniqueIdGenerator ---->
+    await deployer.link(IDT, UniqueIdGenerator);
+    await deployer.deploy(UniqueIdGenerator);
+    ///<---- Infrastructure ---->
     await deployer.link(IDT, Infrastructure);
     await deployer.deploy(Infrastructure);
-    await deployer.deploy(Math);
-    await deployer.deploy(SignedMath);
-    await deployer.deploy(Strings);
-    await deployer.link(IDT, X7Opsilon);
-    await deployer.link(GRandom, X7Opsilon);
-    await deployer.link(Infrastructure, X7Opsilon);
-    await deployer.deploy(X7Opsilon);
-    // await deployer.deploy(X7Opsilon);
+    ///<---- ContractLogic ---->
+    await deployer.link(IDT, Infrastructure);
+    await deployer.deploy(Infrastructure);
+    ///<---- ContractLogic ---->
+    await deployer.link(IDT, ContractLogic);
+    await deployer.link(Strings, ContractLogic);
+    await deployer.link(Infrastructure, ContractLogic);
+    await deployer.link(UniqueIdGenerator, ContractLogic);
+    await deployer.deploy(ContractLogic);
+    ///<---- End ContractLogic ---->
 }
 
 module.exports = (deployer, network) => {

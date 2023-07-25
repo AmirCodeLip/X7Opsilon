@@ -106,7 +106,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Business Contract/BusinessHelper/Infrastructure.sol": "Infrastructure"
+			"XOpsilon Contract/BusinessHelper/Infrastructure.sol": "Infrastructure"
 		},
 		"evmVersion": "paris",
 		"libraries": {},
@@ -144,7 +144,7 @@
 				"dweb:/ipfs/QmcEW85JRzvDkQggxiBBLVAasXWdkhEysqypj9EaB6H2g6"
 			]
 		},
-		"Business Contract/BusinessHelper/IDT.sol": {
+		"XOpsilon Contract/BusinessHelper/IDT.sol": {
 			"keccak256": "0x7b5ad889ff17329190185e11440adcca340fed82ecab5e66a141770243b088fd",
 			"license": "MIT",
 			"urls": [
@@ -152,7 +152,7 @@
 				"dweb:/ipfs/Qma1q1Frx4YJHuz4hCK9CdKqZXRiQRJK1nZ8YBKAB5EbJs"
 			]
 		},
-		"Business Contract/BusinessHelper/Infrastructure.sol": {
+		"XOpsilon Contract/BusinessHelper/Infrastructure.sol": {
 			"keccak256": "0xee236cad344c31c606b3ca987274e76b1dfd9109cd717e8816ba5f65d95c11d9",
 			"license": "MIT",
 			"urls": [

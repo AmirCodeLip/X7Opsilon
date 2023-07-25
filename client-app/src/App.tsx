@@ -13,8 +13,8 @@ function App() {
   if (contractContext.applicationState == ApplicationStates.started || contractContext.applicationState == ApplicationStates.metamaskConnecting) {
     return (<ConnectPage></ConnectPage>);
   }
-  ///check if application have any error
-  if (contractContext.statusInfo.status == StatusType.Error) {
+  //check if application have any error
+  else if (contractContext.statusInfo.status == StatusType.Error) {
     return <ErrorPage error={contractContext.statusInfo.msg!}></ErrorPage>;
   }
   return (<>
@@ -36,7 +36,16 @@ function App() {
         </div>
       </div>
     </nav>
-    <DrivePage></DrivePage>
+    <div className='main-body'>
+      <DrivePage></DrivePage>
+    </div>
+    <footer className='border-solid border-t-2 border-A23456 p-2 absolute h-16 bottom-0 w-full'>
+      <div className='flex justify-center items-center'>
+        <p className='color-A11221'>
+          @copyright
+        </p>
+      </div>
+    </footer>
   </>)
 }
 export default App;

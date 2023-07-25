@@ -1,48 +1,10 @@
 {
 	"compiler": {
-		"version": "0.8.20+commit.a1b79de6"
+		"version": "0.8.18+commit.87f61d96"
 	},
 	"language": "Solidity",
 	"output": {
 		"abi": [
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "number",
-						"type": "uint256"
-					}
-				],
-				"name": "random",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "length",
-						"type": "uint256"
-					}
-				],
-				"name": "randomString",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "payable",
-				"type": "function"
-			},
 			{
 				"inputs": [],
 				"name": "uniqId",
@@ -70,9 +32,9 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Business Contract/BusinessHelper/GRandom.sol": "GRandom"
+			"XOpsilon Contract/BusinessHelper/UniqueIdGenerator.sol": "GRandom"
 		},
-		"evmVersion": "shanghai",
+		"evmVersion": "paris",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -108,19 +70,19 @@
 				"dweb:/ipfs/QmcEW85JRzvDkQggxiBBLVAasXWdkhEysqypj9EaB6H2g6"
 			]
 		},
-		"Business Contract/BusinessHelper/GRandom.sol": {
-			"keccak256": "0x4b33deaad3ea57cb2f8da6c38d4d22d5d07e4b32ad629c207ccd8a737bfd5825",
-			"urls": [
-				"bzz-raw://fd51a2e885db28b2af131c70c09d71f089af9550d2b28c6fa857a8181ffea325",
-				"dweb:/ipfs/QmWzJSXy7B2h8DozoBzkiaeUvM1B5eB6FzEsQvJquHu4JT"
-			]
-		},
-		"Business Contract/BusinessHelper/IDT.sol": {
+		"XOpsilon Contract/BusinessHelper/IDT.sol": {
 			"keccak256": "0x7b5ad889ff17329190185e11440adcca340fed82ecab5e66a141770243b088fd",
 			"license": "MIT",
 			"urls": [
 				"bzz-raw://e68831c8a22b33c25f79ae4a5163e69bbaa595ea6bac65a96dd854addfee9340",
 				"dweb:/ipfs/Qma1q1Frx4YJHuz4hCK9CdKqZXRiQRJK1nZ8YBKAB5EbJs"
+			]
+		},
+		"XOpsilon Contract/BusinessHelper/UniqueIdGenerator.sol": {
+			"keccak256": "0x41b4cf3b53bf27d55de19245e5e83b00bfbe373413cadeacffd17aa91bbe95c2",
+			"urls": [
+				"bzz-raw://7ec30c5cbcd5c11b06ef0fc6c9b3f26fb3f5b66f4310626eb0c9cb4bdf374ef3",
+				"dweb:/ipfs/QmPySBreHxvmJx4Xroie4mTKVupEGidrVDAomsqmqRP6gf"
 			]
 		}
 	},

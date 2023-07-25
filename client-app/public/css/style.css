@@ -10,6 +10,22 @@
 
 body {
     font-family: robotoThin;
+    min-height: 100vh;
+}
+
+#root {
+    height: 100%;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* footer {
+    min-height: 10vh;
+} */
+
+.main-body {
+    position: relative;
+    min-height: 80vh;
 }
 
 .font-roboto-regular {

@@ -1,0 +1,71 @@
+{
+	"id": "ee7b9d801e506a69a12dd0fc217a25fd",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.18",
+	"solcLongVersion": "0.8.18+commit.87f61d96",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"xopsilon Contract/X7Opsilon.sol": {
+				"content": "// // SPDX-License-Identifier: MIT\n// pragma solidity ^0.8;\n// import \"@openzeppelin/contracts/utils/Strings.sol\";\n// import {Infrastructure} from \"./BusinessHelper/Infrastructure.sol\";\n// import {GRandom} from \"./BusinessHelper/GRandom.sol\";\n\n// contract X7Opsilon {\n\n  \n    \n//     GRandom rand = new GRandom();\n    \n//     //data of directories\n//     DirectoryFrame[] public DirectoryFrames;\n//     uint256 DirectoryFrameCount = 0;\n\n//     //directory must be started with slash character\n//     //max length of each directory must be 230\n//     error unsupportedDirectory();\n//     //max length of fileName must be 230\n//     //max length of extension must be 49\n//     //can't find extension\n//     //can't end with dot\n//     error unsupportedFile();\n\n//     // function uploadFile(\n//     //    string calldata fullName,\n//     //    string calldata directory,\n//     //    bytes calldata fileData\n//     // ) public payable {\n//     //    string memory id = rand.uniqId();\n//     //    (,string memory fixDirectory, uint256 directoryCount, uint256 directoryLength) = directoryProcess(directory); \n//     //    (string memory extension, string memory fileName) = fileNameProcess(fullName);\n//     //     FileFrames.push(FileFrame(\n//     //        id,         \n//     //        fileName,\n//     //        extension,\n//     //        fileData,\n//     //        fixDirectory,\n//     //        directoryCount,\n//     //        directoryLength\n//     //     ));\n//     // }\n\n//     //create new directory if not exist\n//     function createDirectory(string memory directory) public payable returns(string memory)\n//     {  \n//         (string[] memory directories, string memory fixDirectory, uint256 directoryCount, uint256 directoryLength) = directoryProcess(directory);  \n//         (bool isNull , DirectoryFrame memory directoryFrame) = getDirectory(fixDirectory,directoryCount, directoryLength);\n//         // DirectoryFrame(id, parentId, fixDirectory, directoryCount, directoryLength)\n//         //root folder    \n//         if(isNull) {\n//             if(directories.length == 0)\n//              return \"\";\n//             string memory id = rand.uniqId();  \n//             string memory parentId = \"\";\n//             if(directories.length > 1)\n//             {\n//                 delete directories[directories.length - 1];\n//                 string memory f = Infrastructure.combine(directories);\n//                 parentId = createDirectory(f);\n//             }\n//             directoryFrame = DirectoryFrame(id, parentId, fixDirectory, directoryCount, directoryLength);\n//             DirectoryFrames.push(DirectoryFrame(id, parentId, fixDirectory, directoryCount, directoryLength));\n//             DirectoryFrameCount++;\n//         }\n//         return directoryFrame.Id;\n//     }\n\n//     function getDirectory(string memory fixDirectory, uint256 directoryCount, uint256 directoryLength) public view returns(bool isNull , DirectoryFrame memory)\n//     {\n//         bytes memory b_fixDirectory = bytes(fixDirectory);\n//         isNull = true;\n//         DirectoryFrame memory directoryFrame;\n//         DirectoryFrame memory searchFrame;\n//         for (uint256 i = 0;i < DirectoryFrameCount;i++){\n//             searchFrame = DirectoryFrames[i];\n//             if(searchFrame.DirectoryCount == directoryCount && searchFrame.DirectoryLength == directoryLength)\n//             {\n//                 bytes memory directory = bytes(searchFrame.Directory);\n//                 if(Infrastructure.bytesEquals(directory,b_fixDirectory)) {\n//                     directoryFrame = searchFrame;\n//                     isNull = false;\n//                 }\n//             }\n//         }\n//         return (isNull,directoryFrame);\n//     }\n\n//     function getDirectoriesByPath(string memory directory) public view returns (bool isNull, DirectoryFrame[] memory directories, uint256 count)\n//     {\n//         (, string memory fixDirectory, uint256 directoryCount, uint256 directoryLength) = directoryProcess(directory);\n//         (bool d_isNull , DirectoryFrame memory d_directoryFrame) = getDirectory(fixDirectory,directoryCount, directoryLength);\n//         bool rootDirectory = directoryCount == 0 && directoryLength == 0;\n//         if(d_isNull && !rootDirectory) {\n//            return (true, directories,0);\n//         }\n//         bytes memory directoryId = bytes(\"\");\n//         if(!rootDirectory)\n//             directoryId = bytes(d_directoryFrame.Id);\n//         DirectoryFrame memory searchFrame;\n//         uint256 i = 0;\n//         count = 2;\n//         directories = new DirectoryFrame[](count);\n//         uint256 j = 0;\n//         for (i = 0; i < DirectoryFrameCount;i++) {\n//             if(i == count)\n//             {\n//                 uint256 newCount =  count + 2;\n//                 directories = resizeDirectoryFrame(directories, count, newCount);\n//                 count = newCount;\n//             }\n//             searchFrame = DirectoryFrames[i];\n//             bytes memory parentId = bytes(searchFrame.ParentId);\n//             if(Infrastructure.bytesEquals(directoryId,parentId)) {\n//                 d_isNull = false;\n//                 directories[j] = searchFrame;\n//                 j++;\n//             }\n//         }\n//         return (false, directories, j);\n//     }\n    \n//     function resizeDirectoryFrame(DirectoryFrame[] memory df1, uint256 oldSize,uint256 newSize) private pure returns(DirectoryFrame[] memory)\n//     {\n//         DirectoryFrame[] memory df2 = new DirectoryFrame[](newSize);\n//         for (uint256 i = 0;i < oldSize; i++)\n//         {\n//             df2[i] = df1[i];\n//         }\n//         return df2;\n//     }\n//     // function getFileName(uint _index) private view returns (string memory fileName) {\n//     //     FileFrame storage fileFrame = FileFrames[_index];\n//     //     return (fileFrame.Name);\n//     // }\n\n//     function directoryProcess(string memory directory)\n//     public pure returns (string[] memory, string memory, uint256, uint256) \n//     { \n//         uint256 count = 0;\n//         uint256 length = 0;\n//         bytes memory b_directory = bytes(directory);\n//         uint256 b_directoryLength = b_directory.length;\n//         bytes memory fixedchars_directory = new bytes(b_directory.length);\n//         if(b_directory[0] != 0x2f)\n//         {\n//             revert unsupportedDirectory();\n//         }\n//         for(uint i = 1; i < b_directoryLength; i++)\n//         {\n//             if(i == (b_directoryLength - 1) && b_directory[i] == 0x2f)\n//             {\n//                 continue;\n//             }\n//             if(b_directory[i] == 0x2f)\n//             {\n//                 count++;\n//             }\n//             fixedchars_directory[length] = b_directory[i];\n//             length++;\n//         }\n//         bytes memory strResult = new bytes(length);\n//         bytes memory resultName = new bytes(250);\n//         uint256 nameCount = 0;\n//         uint directoryIndex = 0;\n//         string[] memory resultDirectories = new string[](count + 1);\n//         for(uint i = 0; i < length; i++)\n//         {\n//             bytes1 b_char = fixedchars_directory[i];\n//             bool lastIndex = i == (length - 1);\n//             bool isSlash = (b_char == 0x2f);\n//             if(!isSlash) \n//             {\n//                 resultName[nameCount] = b_char;\n//                 nameCount++;\n//             }  \n//             if(isSlash || lastIndex)\n//             {\n//                 resultDirectories[directoryIndex] = (string(Infrastructure.copyBytes(resultName,nameCount)));\n//                 directoryIndex++;\n//                 nameCount= 0;\n//             }      \n//             if(nameCount > 230)\n//             {\n//                 revert unsupportedDirectory();\n//             }\n//             strResult[i] = b_char;\n//         }\n//         return(resultDirectories,string(strResult), count, length);\n//     }\n\n//     function fileNameProcess(string memory fullName) public pure returns(string memory, string memory){\n//         bytes memory b_fullName = bytes(fullName);\n//         bytes memory extension = new bytes(50);\n//         if(b_fullName.length > 230){\n//             revert unsupportedFile();\n//         }\n//         uint extensionCount = 0;\n//         uint i = (b_fullName.length - 1);\n//         if(b_fullName[i] == 0x2E){\n//             revert unsupportedFile();\n//         }\n//         for(;;i--)\n//         {         \n//             bytes1 b_char = b_fullName[i];\n//             if(b_char == 0x2E)\n//             {\n//                 break;\n//             }\n//             if(extensionCount > 49){\n//                 revert unsupportedFile();\n//             }   \n//             extension[extensionCount] = b_char;\n//             extensionCount++;\n//             if(i == 0)\n//             {\n//                 revert unsupportedFile();\n//             }\n//         }\n//         extension = Infrastructure.copyBytes(extension,extensionCount);\n//         extension = Infrastructure.reverseBytes(extension);\n//         uint256 nameCount = (b_fullName.length - extensionCount -1);\n//         bytes memory fileName = Infrastructure.copyBytes(b_fullName,nameCount);\n//         return (string(extension), string(fileName));\n//     }\n// }"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": false,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			}
+		}
+	},
+	"output": {
+		"errors": [
+			{
+				"component": "general",
+				"errorCode": "3420",
+				"formattedMessage": "Warning: Source file does not specify required compiler version! Consider adding \"pragma solidity ^0.8.18;\"\n--> xopsilon Contract/X7Opsilon.sol\n\n",
+				"message": "Source file does not specify required compiler version! Consider adding \"pragma solidity ^0.8.18;\"",
+				"severity": "warning",
+				"sourceLocation": {
+					"end": -1,
+					"file": "xopsilon Contract/X7Opsilon.sol",
+					"start": -1
+				},
+				"type": "Warning"
+			}
+		],
+		"sources": {
+			"xopsilon Contract/X7Opsilon.sol": {
+				"ast": {
+					"absolutePath": "xopsilon Contract/X7Opsilon.sol",
+					"exportedSymbols": {},
+					"id": 1,
+					"license": "MIT",
+					"nodeType": "SourceUnit",
+					"nodes": [],
+					"src": "9260:0:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}

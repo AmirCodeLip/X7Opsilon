@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.20+commit.a1b79de6"
+		"version": "0.8.18+commit.87f61d96"
 	},
 	"language": "Solidity",
 	"output": {
@@ -452,9 +452,9 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Business Contract/BusinessHelper/IDT.sol": "IDT"
+			"XOpsilon Contract/BusinessHelper/IDT.sol": "IDT"
 		},
-		"evmVersion": "shanghai",
+		"evmVersion": "paris",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -490,7 +490,7 @@
 				"dweb:/ipfs/QmcEW85JRzvDkQggxiBBLVAasXWdkhEysqypj9EaB6H2g6"
 			]
 		},
-		"Business Contract/BusinessHelper/IDT.sol": {
+		"XOpsilon Contract/BusinessHelper/IDT.sol": {
 			"keccak256": "0x7b5ad889ff17329190185e11440adcca340fed82ecab5e66a141770243b088fd",
 			"license": "MIT",
 			"urls": [

@@ -1,0 +1,339 @@
+{
+	"compiler": {
+		"version": "0.8.18+commit.87f61d96"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "parentId",
+						"type": "string"
+					}
+				],
+				"name": "createDirectory",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "id",
+						"type": "string"
+					}
+				],
+				"name": "getDirectory",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "Id",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "ParentId",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "Name",
+								"type": "string"
+							},
+							{
+								"internalType": "address",
+								"name": "Creator",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "DateCreated",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct DirectoryFrame[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getOrCreateRoot",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "Id",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "ParentId",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "Name",
+								"type": "string"
+							},
+							{
+								"internalType": "address",
+								"name": "Creator",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "DateCreated",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct DirectoryFrame",
+						"name": "root",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getRoot",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "Id",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "ParentId",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "Name",
+								"type": "string"
+							},
+							{
+								"internalType": "address",
+								"name": "Creator",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "DateCreated",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct DirectoryFrame",
+						"name": "root",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testGet",
+				"outputs": [
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "directoryId",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "fileName",
+						"type": "string"
+					},
+					{
+						"internalType": "bytes",
+						"name": "fileData",
+						"type": "bytes"
+					}
+				],
+				"name": "uploadFile",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"XOpsilon Contract/ContractLogic.sol": "ContractLogic"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts/utils/Strings.sol": {
+			"keccak256": "0x3088eb2868e8d13d89d16670b5f8612c4ab9ff8956272837d8e90106c59c14a0",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b81d9ff6559ea5c47fc573e17ece6d9ba5d6839e213e6ebc3b4c5c8fe4199d7f",
+				"dweb:/ipfs/QmPCW1bFisUzJkyjroY3yipwfism9RRCigCcK1hbXtVM8n"
+			]
+		},
+		"@openzeppelin/contracts/utils/math/Math.sol": {
+			"keccak256": "0xe4455ac1eb7fc497bb7402579e7b4d64d928b846fce7d2b6fde06d366f21c2b3",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://cc8841b3cd48ad125e2f46323c8bad3aa0e88e399ec62acb9e57efa7e7c8058c",
+				"dweb:/ipfs/QmSqE4mXHA2BXW58deDbXE8MTcsL5JSKNDbm23sVQxRLPS"
+			]
+		},
+		"@openzeppelin/contracts/utils/math/SignedMath.sol": {
+			"keccak256": "0xf92515413956f529d95977adc9b0567d583c6203fc31ab1c23824c35187e3ddc",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c50fcc459e49a9858b6d8ad5f911295cb7c9ab57567845a250bf0153f84a95c7",
+				"dweb:/ipfs/QmcEW85JRzvDkQggxiBBLVAasXWdkhEysqypj9EaB6H2g6"
+			]
+		},
+		"XOpsilon Contract/BusinessHelper/IDT.sol": {
+			"keccak256": "0x7b5ad889ff17329190185e11440adcca340fed82ecab5e66a141770243b088fd",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://e68831c8a22b33c25f79ae4a5163e69bbaa595ea6bac65a96dd854addfee9340",
+				"dweb:/ipfs/Qma1q1Frx4YJHuz4hCK9CdKqZXRiQRJK1nZ8YBKAB5EbJs"
+			]
+		},
+		"XOpsilon Contract/BusinessHelper/Infrastructure.sol": {
+			"keccak256": "0xee236cad344c31c606b3ca987274e76b1dfd9109cd717e8816ba5f65d95c11d9",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6393100fedeea330115c5a3e5661102bc09d72943e62c8cdb03c9093e279756f",
+				"dweb:/ipfs/QmcY4RRaYrwNpGF6wNjBTpM7P3dQ6QgzaEW8QkrLV6dKtX"
+			]
+		},
+		"XOpsilon Contract/BusinessHelper/UniqueIdGenerator.sol": {
+			"keccak256": "0xc2458afdd1f387a97697f50038ac1ad8fbaf2f59e7a2ba668c95a61ad13b8637",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://fb4823c7e4a52b5a65631c89fd08bdc5a313a3a05595293c92e97f74fd63ed8b",
+				"dweb:/ipfs/QmbuvzVKvYwro4hGtvPopL2AQXSq9JZ78YGHKaPLtnBgZB"
+			]
+		},
+		"XOpsilon Contract/ContractLogic.sol": {
+			"keccak256": "0xb581fc062600ff9a029367c48a02b6bf1defd4d9dd656f4a3af2f9af93e982f2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://46c5b5770cbe3596f0e34fd30cdf76b23d6a9a95137960365f02f80acc0cf228",
+				"dweb:/ipfs/QmTJBXNX9iTYhEya8HZV9GBxbKC9dpzFusJkPA7J3gseEi"
+			]
+		},
+		"XOpsilon Contract/Entities/DirectoryFrame.sol": {
+			"keccak256": "0x5d83bc2cf961722be76e752674163e204fc41d03192800c24844b721407b0506",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://adea43412e94508b97ee5c48b39abfdd39ab14cc3511e3a8c6ac2681970666b6",
+				"dweb:/ipfs/QmRgQsRLa5RFBSEBMyXeLHpQeEu3TfArZMgLJpLtRRQ2ky"
+			]
+		},
+		"XOpsilon Contract/Entities/DirectoryInfoFrame.sol": {
+			"keccak256": "0xe9ff2f2701f6c460da879572e84339bdd71c12e1e18fda417da2bcd6a247d02d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://10a3fee36df4dc467ef637613e6dd9fc3e69e08ccd4908a38c27b4024b77b111",
+				"dweb:/ipfs/Qmb21S7vS4dzJRTFuuUh9T2R7UJjgyNo2FBaGerLHSh3h3"
+			]
+		},
+		"XOpsilon Contract/Entities/FileFrame.sol": {
+			"keccak256": "0xab17ddeeaad9ea12ee1c39229c010de6c68165b309d3313506377b82b599bee3",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://eb57c7af1279b5d6a783a50dba7368619d251c8473c5b5e09e57f63f35da2d34",
+				"dweb:/ipfs/QmSPNmuPj2JvqCEgqrXGEp9gHWUDHrP1QrQiebVPZpWSaW"
+			]
+		},
+		"XOpsilon Contract/Repositories/BaseNameDeclaration.sol": {
+			"keccak256": "0x2a86f65c0169290ad8a9665fa4ade31d9aee4489315d647d0338d5828e4e48a4",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://bb450456a015ce3ac1f07c6eb4e49c450de14c43e0ea67e96fd52da8a8d7ba51",
+				"dweb:/ipfs/QmVWtTcECUNK2keoePUPAPZp8a9td685DM5VGiTwBbxnM2"
+			]
+		},
+		"XOpsilon Contract/Repositories/DirectoryRepository.sol": {
+			"keccak256": "0x9c21fc25286b5446b3e71ba6f13c6978468f548121d62207a9ccb7db4f1c6873",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b81a05e6aac96073d95d612e9e35711487370dc77fc7603ad2335f4fc851e6eb",
+				"dweb:/ipfs/QmewzC21Eu9MZmsyzzYWmqyWdYWJ8MhaupBn59Nt71acvQ"
+			]
+		},
+		"XOpsilon Contract/Repositories/FileRepository.sol": {
+			"keccak256": "0xa2257c3e03de230a438e8b9d69589622b2774abe896c2b6c84d672e1c3d50bcf",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://cad025435cc544af4e9122bb7fdcf7d29d54798046e7bfee2232562afd00349d",
+				"dweb:/ipfs/QmQJyLjQrqqb3Dyi8ohdRwznxRaCFEC5rwG4YDYdRmDwd4"
+			]
+		}
+	},
+	"version": 1
+}

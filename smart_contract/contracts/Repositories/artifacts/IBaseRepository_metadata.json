@@ -1,0 +1,45 @@
+{
+	"compiler": {
+		"version": "0.8.18+commit.87f61d96"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"XOpsilon Contract/Repositories/IBaseRepository.sol": "IBaseRepository"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"XOpsilon Contract/Repositories/IBaseRepository.sol": {
+			"keccak256": "0xa26b7eeec930eb1e712ebf7284712d41be7999a7550c6dd6229d6a4d82e35ae9",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f77f649ab9bc504e33e8618952e18c859e651d09c602a100dc2adf53b4ffafcd",
+				"dweb:/ipfs/QmSAN8uMFbdUxW5u23u5R6cZqU2Z9kXPGDqEZoHqmBHTqV"
+			]
+		}
+	},
+	"version": 1
+}

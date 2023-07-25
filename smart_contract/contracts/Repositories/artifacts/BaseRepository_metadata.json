@@ -1,0 +1,75 @@
+{
+	"compiler": {
+		"version": "0.8.18+commit.87f61d96"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "unsupportedName",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "unsupportedSize",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					}
+				],
+				"name": "test",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"XOpsilon Contract/Repositories/BaseNameDeclaration.sol": "BaseRepository"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"XOpsilon Contract/Repositories/BaseNameDeclaration.sol": {
+			"keccak256": "0xb6e948045003c1b8f2685f266b55ca3d57273ef6cf37cc3126461e2a0dc1443b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://334a68d975ff348db8f291b942a448b673e8c6d17c59ada2a414b5fed7b47bfc",
+				"dweb:/ipfs/Qmcq5BSXGjY3fCwxX3nso8ZCRouZ5ATsxpZJ9T9PKZJCh7"
+			]
+		}
+	},
+	"version": 1
+}

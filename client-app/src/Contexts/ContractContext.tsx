@@ -1,8 +1,8 @@
 import React from "react";
 import { ContractContextType, ApplicationStates, StatusInfo, StatusType } from "../Types";
 import { ethers } from "ethers";
-import { X7OpsilonAbi, X7OpsilonAddress } from "./../X7OpsilonInformation/ContractData";
-import X7OpsilonInterface from "./../X7OpsilonInformation/Interfaces/X7OpsilonInterface";
+import { ContractLogicAddress, ContractLogicAbi } from "./../X7OpsilonInformation/ContractData";
+import ContractLogic from "../X7OpsilonInformation/Interfaces/ContractLogic";
 
 const { ethereum } = window;
 export const ContractContext = React.createContext<ContractContextType | null>(null)
@@ -21,7 +21,7 @@ export const ContractContextProvider = (params: { children: JSX.Element }) => {
             let accounts = await accountsPromise;
             setAccounts(accounts[0]);
             const signer = await provider!.getSigner();
-            contractAccounts(new ethers.Contract(X7OpsilonAddress, X7OpsilonAbi, signer));
+            contractAccounts(new ethers.Contract(ContractLogicAddress, ContractLogicAbi, signer));
             state = ApplicationStates.metamaskConnected;
         } catch (ex: any) {
             if (ex.error && ex.error.code == -32002) {
@@ -38,14 +38,14 @@ export const ContractContextProvider = (params: { children: JSX.Element }) => {
             metamaskConnection(false);
         }
     }, [provider]);
-    let fileManager: X7OpsilonInterface | null = null;
+    let fileManager: ContractLogic | null = null;
     const context: ContractContextType = {
         applicationState: applicationState,
         statusInfo: statusInfo,
         provider: provider,
         get fileManager() {
             if (fileManager == null) {
-                fileManager = new X7OpsilonInterface(contract!);
+                fileManager = new ContractLogic(contract!);
             }
             return fileManager!;
         },
