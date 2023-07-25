@@ -7,6 +7,7 @@ import {FileRepository} from "./Repositories/FileRepository.sol";
 import {DirectoryRepository} from "./Repositories/DirectoryRepository.sol";
 import {DirectoryFrame} from "./Entities/DirectoryFrame.sol";
 import {DirectoryInfoFrame} from "./Entities/DirectoryInfoFrame.sol";
+import "./ViewModels/FileOutput.sol";
 
 contract ContractLogic {
     UniqueIdGenerator private uniqueIdGenerator;
@@ -26,17 +27,37 @@ contract ContractLogic {
         return (directoryRepository.add(name, parentId));
     }
 
-    function getDirectory(
+    function getDirectoryData(
         string memory id
-    ) public view returns (DirectoryFrame[] memory) {
-        return (directoryRepository.get(id));
+    )
+        public
+        view
+        returns (
+            DirectoryFrame[] memory,
+            FileOutput[] memory,
+            DirectoryInfoFrame memory
+        )
+    {
+        (
+            DirectoryFrame[] memory directories,
+            DirectoryInfoFrame memory directoryInfo
+        ) = directoryRepository.getSubDirectories(id);
+        FileOutput[] memory files = fileRepository.getSubFiles(
+            id,
+            directoryInfo
+        );
+        return (directories, files, directoryInfo);
     }
 
-    function getOrCreateRoot() public returns (DirectoryFrame memory root) {
+    function getOrCreateRoot()
+        public
+        payable
+        returns (DirectoryFrame memory root)
+    {
         return (directoryRepository.getOrCreateRoot());
     }
 
-    function getRoot() public view returns (DirectoryFrame memory root) {
+    function getRoot() public view returns (bool, DirectoryFrame memory) {
         return (directoryRepository.getRoot());
     }
 
@@ -47,20 +68,15 @@ contract ContractLogic {
     ) public payable returns (string memory) {
         DirectoryFrame memory directory = directoryRepository
             .getDirectoryOrRoot(directoryId);
-
         DirectoryInfoFrame memory directoryInfo = directoryRepository
             .getOrCreateDirectoryInfo(directory.Id);
         directoryInfo.FilesCount = directoryInfo.FilesCount + 1;
+        directoryRepository.updateDirectoryInfo(directory.Id, directoryInfo);
         string memory fileID = fileRepository.add(
             fileName,
             directoryId,
             fileData
         );
         return fileID;
-    }
-
-    function testGet(bytes memory t) public pure returns (bytes memory) {
-        //0x2123229f00
-        return t;
     }
 }

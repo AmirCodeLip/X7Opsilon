@@ -23,22 +23,6 @@ contract DirectoryRepository is BaseNameDeclaration {
         _uniqueIdGenerator = uniqueIdGenerator;
     }
 
-    function exist(string memory id) internal view returns (bool) {
-        DirectoryFrame memory directory = directoriesMap[id];
-        if (bytes(directory.Id).length == 0) {
-            return false;
-        }
-        return true;
-    }
-
-    function existRoot() public view returns (bool) {
-        DirectoryFrame memory root = rootsMap[msg.sender];
-        if (bytes(root.Id).length == 0) {
-            return false;
-        }
-        return true;
-    }
-
     function add(string memory name, string memory parentId)
         public
         payable
@@ -75,20 +59,25 @@ contract DirectoryRepository is BaseNameDeclaration {
             id
         ];
         directoryInfoParent.DirectoriesCount = newModel.DirectoriesCount;
+        directoryInfoParent.FilesCount = newModel.FilesCount;
     }
 
-    function get(string memory directoryId)
+    function getSubDirectories(string memory directoryId)
         public
         view
-        returns (DirectoryFrame[] memory)
+        returns (DirectoryFrame[] memory, DirectoryInfoFrame memory)
     {
-        if (!exist(directoryId)) {
+        (bool directoryNull, DirectoryFrame memory directory) = getDirectory(directoryId);
+        if (directoryNull) {
             revert notfound();
         }
-        DirectoryInfoFrame memory directoryInfo = directoryInfoListMap[
-            directoryId
-        ];
-
+        (
+            bool isNull,
+            DirectoryInfoFrame memory directoryInfo
+        ) = getDirectoryInfo(directoryId);
+        if (isNull) {
+            revert notfoundDirectory();
+        }
         DirectoryFrame[] memory result = new DirectoryFrame[](
             directoryInfo.DirectoriesCount
         );
@@ -101,34 +90,76 @@ contract DirectoryRepository is BaseNameDeclaration {
                 result[j++] = item;
             }
         }
-        return result;
+        return (result, directoryInfo);
     }
 
-    function getRoot() public view returns (DirectoryFrame memory root) {
-        root = rootsMap[msg.sender];
-        return (root);
+    function getRoot()
+        public
+        view
+        returns (bool isNull, DirectoryFrame memory root)
+    {
+        DirectoryFrame memory _root = rootsMap[msg.sender];
+        if (bytes(_root.Id).length == 0 || _root.Creator != msg.sender) {
+            isNull = true;
+        } else {
+            root = _root;
+            isNull = false;
+        }
+        return (isNull, root);
+    }
+
+    function getDirectory(string memory id)
+        internal
+        view
+        returns (bool isNull, DirectoryFrame memory directory)
+    {
+        DirectoryFrame memory _directory = directoriesMap[id];
+        bytes memory b_directoryId = bytes(_directory.Id);
+        bytes memory b_id = bytes(_directory.Id);
+        if (
+            b_id.length == 0 || !Infrastructure.bytesEquals(b_id, b_directoryId)
+        ) {
+            isNull = true;
+        } else {
+            directory = _directory;
+            isNull = false;
+        }
+        return (isNull, directory);
     }
 
     function getDirectoryInfo(string memory id)
         public
         view
-        returns (DirectoryInfoFrame memory directoryInfo)
+        returns (bool isNull, DirectoryInfoFrame memory directoryInfo)
     {
-        return (directoryInfoListMap[id]);
+        DirectoryInfoFrame memory _directoryInfo = directoryInfoListMap[id];
+        bytes memory b_directoryInfoId = bytes(_directoryInfo.DirectoryId);
+        if (
+            b_directoryInfoId.length == 0 ||
+            !Infrastructure.bytesEquals(b_directoryInfoId, bytes(id))
+        ) {
+            isNull = true;
+        } else {
+            directoryInfo = _directoryInfo;
+            isNull = false;
+        }
+        return (isNull, directoryInfo);
     }
 
     //get directiry and if it's don't have id return root
     function getDirectoryOrRoot(string memory id)
-        public 
+        public
         returns (DirectoryFrame memory)
     {
-        bytes memory b_parentId = bytes(id);
-        if (b_parentId.length == 0) {
+        bytes memory b_Id = bytes(id);
+        if (b_Id.length == 0) {
             return getOrCreateRoot();
-        } else if (!exist(id)) {
+        }
+        (bool directoryNull, DirectoryFrame memory directory) = getDirectory(id);
+        if (directoryNull) {
             revert notfound();
         } else {
-            return directoriesMap[id];
+            return directory;
         }
     }
 
@@ -136,24 +167,23 @@ contract DirectoryRepository is BaseNameDeclaration {
     function getOrCreateDirectoryInfo(string memory id)
         public
         payable
-        returns (DirectoryInfoFrame memory directoryInfo)
+        returns (DirectoryInfoFrame memory)
     {
-        directoryInfo = directoryInfoListMap[id];
-        if (bytes(directoryInfo.DirectoryId).length == 0) {
-            directoryInfoListMap[id] = DirectoryInfoFrame(id, 0, 0, 0);
-            directoryInfo = directoryInfoListMap[id];
+        (
+            bool isNull,
+            DirectoryInfoFrame memory directoryInfo
+        ) = getDirectoryInfo(id);
+        if (isNull) {
+            directoryInfo = DirectoryInfoFrame(id, 0, 0, 0);
+            directoryInfoListMap[id] = directoryInfo;
         }
         return (directoryInfo);
     }
 
     //create {DirectoryFrame} if not exist then return
-    function getOrCreateRoot()
-        public
-        payable
-        returns (DirectoryFrame memory root)
-    {
-        root = rootsMap[msg.sender];
-        if (bytes(root.Id).length == 0) {
+    function getOrCreateRoot() public payable returns (DirectoryFrame memory) {
+        (bool isNull, DirectoryFrame memory root) = getRoot();
+        if (isNull) {
             string memory rootId = _uniqueIdGenerator.uniqId();
             root = DirectoryFrame(
                 rootId,

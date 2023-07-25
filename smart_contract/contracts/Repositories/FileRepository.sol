@@ -2,9 +2,11 @@
 pragma solidity ^0.8;
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "../Entities/FileFrame.sol";
+import "../Entities/DirectoryInfoFrame.sol";
 import "./BaseNameDeclaration.sol";
 import {UniqueIdGenerator} from "../BusinessHelper/UniqueIdGenerator.sol";
 import "../BusinessHelper/Infrastructure.sol";
+import "../ViewModels/FileOutput.sol";
 
 contract FileRepository is BaseNameDeclaration {
     //data of files
@@ -16,11 +18,28 @@ contract FileRepository is BaseNameDeclaration {
         _uniqueIdGenerator = uniqueIdGenerator;
     }
 
+    function getSubFiles(
+        string memory directoryId,
+        DirectoryInfoFrame memory directoryInfo
+    ) public view returns (FileOutput[] memory) {
+        FileOutput[] memory result = new FileOutput[](directoryInfo.FilesCount);
+        uint256 j = 0;
+        bytes memory b_directoryId = bytes(directoryId);
+        for (uint256 i = 0; i < count; i++) {
+            FileFrame memory item = data[i];
+            bytes memory fileDirectoryId = bytes(item.DirectoryId);
+            if (Infrastructure.bytesEquals(b_directoryId, fileDirectoryId)) {
+                result[j++] = FileOutput(item.Id, item.Name, item.Extension);
+            }
+        }
+        return (result);
+    }
+
     function add(
         string memory fullName,
         string memory directoryId,
         bytes memory fileData
-    ) public isAllowedName(fullName, false) returns(string memory) {
+    ) public isAllowedName(fullName, false) returns (string memory) {
         string memory id = _uniqueIdGenerator.uniqId();
         (string memory name, string memory extension) = separateNameExe(
             fullName
@@ -39,11 +58,9 @@ contract FileRepository is BaseNameDeclaration {
         return id;
     }
 
-    function separateNameExe(string memory fullName)
-        public
-        pure
-        returns (string memory, string memory)
-    {
+    function separateNameExe(
+        string memory fullName
+    ) public pure returns (string memory, string memory) {
         uint256 extensionCount = 0;
         bytes memory extension = new bytes(50);
         bytes memory b_fullName = bytes(fullName);

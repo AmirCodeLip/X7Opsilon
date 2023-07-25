@@ -17,9 +17,10 @@ export default function DrivePage() {
         return root;
     }
     async function refresh() {
-        // let root = getRoot();
-        // let directories = await contractContext.fileManager.getDirectoriesByPath(root);
-        // setDirectories(directories);
+        var directory = await contractContext.fileManager.getRoot();
+        if (directory !== null) {
+
+        }
     }
     function closeModal() {
         setModalState("none");
@@ -27,10 +28,8 @@ export default function DrivePage() {
     async function createFolder() {
         createFolderRef.current!.disabled = true;
         closeModal();
-        // let root = getRoot();
-        // await contractContext.fileManager.createDirectory(root + folderRef.current?.value);
-        // await refresh();
-
+        await contractContext.fileManager.createDirectory(folderRef.current?.value!, "");
+        await refresh();
     }
     function showDirectoryModal() {
         if (folderRef.current !== null)
@@ -40,8 +39,7 @@ export default function DrivePage() {
         setModalState("showDirectoryModal");
     }
     React.useEffect(() => {
-        // refresh();
-        // contractContext.fileManager.testGet();
+        refresh();
     }, []);
 
     return (

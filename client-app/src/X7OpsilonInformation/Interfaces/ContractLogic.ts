@@ -1,3 +1,4 @@
+import { debug } from "console";
 import { ethers } from "ethers";
 
 export interface Directory {
@@ -22,29 +23,24 @@ export default class ContractLogic {
         console.log(await this.bytesToFile(data).text());
     }
 
-    async getDirectoriesByPath(path: string) {
-        // let result = await this.contract.getDirectoriesByPath(path);
-        // let isNull: boolean = result[0];
-        // let count: number = result[2];
-        // let data: any = result[1];
-        // if (isNull)
-        //     return null;
-        // let directories: Array<Directory> = [];
-        // for (let i = 0; i < count; i++) {
-        //     let item = data[i];
-        //     directories.push({
-        //         Id: item.Id as string,
-        //         ParentId: item.ParentId as string,
-        //         Directory: item.Directory as string,
-        //         DirectoryCount: item.DirectoryCount as number,
-        //         DirectoryLength: item.DirectoryLength as number,
-        //     });
-        // }
-        return null;
+    async getRoot() {
+        let result = await this.contract.getRoot();
+        // let ts = await this.contract.getOrCreateRoot();
+        // debugger;
+        if (result[0]) {
+            return null;
+        }
+        else {
+            console.log(result[1][0])
+        }
     }
 
-    async createDirectory(path: string) {
-        // let createDirectory = await this.contract.createDirectory(path);
+    async createDirectory(name: string, parentId: string) {
+        try {
+
+            let createDirectory = await this.contract.createDirectory(name, parentId);
+        } catch (ex) {
+        }
     }
 
     fileToBytes(file: Blob) {
