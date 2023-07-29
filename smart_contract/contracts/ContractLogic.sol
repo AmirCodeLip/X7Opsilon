@@ -24,7 +24,7 @@ contract ContractLogic {
         string memory name,
         string memory parentId
     ) public payable returns (string memory) {
-        return (directoryRepository.add(name, parentId));
+        return (directoryRepository.add(msg.sender, name, parentId));
     }
 
     function getDirectoryData(
@@ -54,11 +54,11 @@ contract ContractLogic {
         payable
         returns (DirectoryFrame memory root)
     {
-        return (directoryRepository.getOrCreateRoot());
+        return (directoryRepository.getOrCreateRoot(msg.sender));
     }
 
     function getRoot() public view returns (bool, DirectoryFrame memory) {
-        return (directoryRepository.getRoot());
+        return (directoryRepository.getRoot(msg.sender));
     }
 
     function uploadFile(
@@ -67,12 +67,13 @@ contract ContractLogic {
         bytes memory fileData
     ) public payable returns (string memory) {
         DirectoryFrame memory directory = directoryRepository
-            .getDirectoryOrRoot(directoryId);
+            .getDirectoryOrRoot(msg.sender, directoryId);
         DirectoryInfoFrame memory directoryInfo = directoryRepository
             .getOrCreateDirectoryInfo(directory.Id);
         directoryInfo.FilesCount = directoryInfo.FilesCount + 1;
         directoryRepository.updateDirectoryInfo(directory.Id, directoryInfo);
         string memory fileID = fileRepository.add(
+            msg.sender,
             fileName,
             directoryId,
             fileData

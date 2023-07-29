@@ -36,6 +36,7 @@ contract FileRepository is BaseNameDeclaration {
     }
 
     function add(
+        address user,
         string memory fullName,
         string memory directoryId,
         bytes memory fileData
@@ -50,7 +51,7 @@ contract FileRepository is BaseNameDeclaration {
             name,
             extension,
             fileData,
-            msg.sender,
+            user,
             block.timestamp
         );
         data.push(newFile);

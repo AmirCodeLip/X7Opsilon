@@ -18,7 +18,7 @@ function App() {
     return <ErrorPage error={contractContext.statusInfo.msg!}></ErrorPage>;
   }
   return (<>
-    <nav className="border-solid border-b-2 border-A23456">
+    <nav className="border-solid border-b-2 border-A23456 bg-A12500">
       <div className="w-full flex flex-wrap items-center justify-between mx-auto py-3 px-2">
         <div className='flex rounded-t-sm'>
           <div className='flex w-12 justify-center items-center relative'>
@@ -28,7 +28,7 @@ function App() {
           </div>
           <div className='ml-2'>
             <div className='color-A11191 text-xs font-medium'>Apps</div>
-            <div className='font-roboto-regular'>File Manager</div>
+            <div className='font-roboto-regular color-A19500'>File Manager</div>
           </div>
         </div>
         <div className="flex items-center md:order-2">
@@ -36,10 +36,10 @@ function App() {
         </div>
       </div>
     </nav>
-    <div className='main-body'>
+    <div className='main-body bg-A15500'>
       <DrivePage></DrivePage>
     </div>
-    <footer className='border-solid border-t-2 border-A23456 p-2 absolute h-16 bottom-0 w-full'>
+    <footer className='border-solid border-t-2 border-A23456 p-2 relative h-16 bottom-0 w-full bg-A12500'>
       <div className='flex justify-center items-center'>
         <p className='color-A11221'>
           @copyright

@@ -4,35 +4,9 @@ import { ApplicationStates, StatusInfo, StatusType } from './../Types';
 import { Icons } from "./../ThemeProvider";
 import { ethers } from "ethers";
 import { useCookies } from 'react-cookie';
-import { Cookie, CookieSetOptions } from 'universal-cookie';
+import { Setting } from '../ManageCookies'
 
-type SetCookiesType = (name: "settingCookie", value: any, options?: CookieSetOptions | undefined) => void;
 
-class Setting {
-    private metamaskConnected: boolean = false;
-    private setCookies: SetCookiesType;
-    constructor(settingCookie: any | undefined, setCookies: SetCookiesType) {
-        this.setCookies = setCookies;
-        if (settingCookie) {
-            if (settingCookie.metamaskConnected === true)
-                this.metamaskConnected = true;
-        }
-    }
-
-    public get MetamaskConnected(): boolean {
-        return this.metamaskConnected;
-    }
-
-    public set MetamaskConnected(v: boolean) {
-        this.metamaskConnected = v;
-        this.changeCookie();
-    }
-
-    private changeCookie() {
-        let data: any = { metamaskConnected: this.metamaskConnected };
-        this.setCookies("settingCookie", JSON.stringify(data), {});
-    }
-}
 
 export default function ConnectPage() {
     const contractContext = React.useContext(ContractContext)!!;

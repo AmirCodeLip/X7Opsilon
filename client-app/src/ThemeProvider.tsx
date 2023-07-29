@@ -5,8 +5,10 @@ interface IconProps {
     stroke?: string,
     onClick?: React.MouseEventHandler<SVGSVGElement> | undefined
 }
-var theme: any | null = null;
-var folderColor1 = "", folderColor2 = "", folderColor3 = "";
+
+export enum themes {
+    whiteBlueTheme, darkBlueTheme
+}
 
 export const Icons = {
     Close_FILL0_wght400_GRAD0_opsz24(props: IconProps) {
@@ -37,9 +39,9 @@ export const Icons = {
     Folder(props: IconProps) {
         //theme[props.colorName]
         return (<svg xmlns="http://www.w3.org/2000/svg" className={props.className} x="0px" y="0px" viewBox="0 0 72 72">
-            <path fill={folderColor3} d="M57.5,31h-23c-1.4,0-2.5-1.1-2.5-2.5v-10c0-1.4,1.1-2.5,2.5-2.5h23c1.4,0,2.5,1.1,2.5,2.5v10	C60,29.9,58.9,31,57.5,31z"></path>
-            <path fill={folderColor1} d="M59.8,61H12.2C8.8,61,6,58,6,54.4V17.6C6,14,8.8,11,12.2,11h18.5c1.7,0,3.3,1,4.1,2.6L38,24h21.8	c3.4,0,6.2,2.4,6.2,6v24.4C66,58,63.2,61,59.8,61z"></path>
-            <path fill={folderColor2} d="M7.7,59c2.2,2.4,4.7,2,6.3,2h45c1.1,0,3.2,0.1,5.3-2H7.7z"></path>
+            <path fill="var(--A11221)" d="M57.5,31h-23c-1.4,0-2.5-1.1-2.5-2.5v-10c0-1.4,1.1-2.5,2.5-2.5h23c1.4,0,2.5,1.1,2.5,2.5v10	C60,29.9,58.9,31,57.5,31z"></path>
+            <path fill="var(--A21221)" d="M59.8,61H12.2C8.8,61,6,58,6,54.4V17.6C6,14,8.8,11,12.2,11h18.5c1.7,0,3.3,1,4.1,2.6L38,24h21.8	c3.4,0,6.2,2.4,6.2,6v24.4C66,58,63.2,61,59.8,61z"></path>
+            <path fill="var(--A31221)" d="M7.7,59c2.2,2.4,4.7,2,6.3,2h45c1.1,0,3.2,0.1,5.3-2H7.7z"></path>
         </svg>);
     }
 }
@@ -53,35 +55,45 @@ const whiteBlueTheme: any = {
     A11111: "#919191",
     A11191: "#8094AE",
     A23456: "#E5E9F2",
-    A11221: "#8AA3FF",
+    // --------folder----------
+    A11221: "#6C87FE",
+    A21221: "#8AA3FF",
+    A31221: "#798BFF",
+    // --------folder----------
+    A99999: "#DBDFEA",
 };
 
 const darkBlueTheme: any = {
     A10000: "#FFFFFF",
     A12500: "#060818",
-    A19500: "#e0e6ed",
-    A15500: "#191e3a",
+    A19500: "#E0E6Ed",
+    A15500: "#212122",
     A00000: "#E4761B",
-    A11111: "#b7d3e4",
+    A11111: "#B7D3E4",
+    A11191: "#8094AE",
+    A23456: "#555D50",
+    // --------folder----------
+    A11221: "#6C87FE",
+    A21221: "#8AA3FF",
+    A31221: "#798BFF"
+    // --------folder----------
+
     //folder color// A11221: "#424d63",
 };
 
 //Violet theme A11193: "#973FFF",
 
 
-export function getThemeColor(themeName: string) {
+export function getThemeColor(themeName?: themes) {
+    let theme: any;
     switch (themeName) {
-        case "darkBlueTheme":
+        case themes.darkBlueTheme:
             theme = darkBlueTheme;
             break;
         default:
             theme = whiteBlueTheme;
             break;
     }
-    let folderColor = parseInt(theme["A11221"]?.replace("#", ""), 16);
-    folderColor2 = "#" + (folderColor - 1120256).toString(16);
-    folderColor3 = "#" + (folderColor - 1973249).toString(16);
-    folderColor1 = "#" + (folderColor).toString(16);
     let colorBase = ":root {";
     let style = "";
     for (let key in theme) {
@@ -91,7 +103,7 @@ export function getThemeColor(themeName: string) {
         style += `.color-${key}{color:var(${nkey})}`;
         style += `.hover-color-${key}:hover{color:var(${nkey})}`;
         style += `.hover-border-${key}:hover{border-color:var(${nkey})}`;
-        style += `.border-${key}:hover{border-color:var(${nkey})}`;
+        style += `.border-${key}{border-color:var(${nkey})}`;
     }
     colorBase += "}";
 

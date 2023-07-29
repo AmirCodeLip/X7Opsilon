@@ -8,6 +8,7 @@ contract BaseNameDeclaration {
     error unsupportedName();
     error unsupportedSize();
     error notfound();
+    error notfoundDirectory();
 
     modifier isAllowedName(string memory name, bool isdirectory) {
         bytes memory b_name = bytes(name);

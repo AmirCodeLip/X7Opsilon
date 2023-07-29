@@ -11,10 +11,10 @@ import { CookiesProvider } from 'react-cookie';
 window.changeTheme = function (themeName: string) {
   let themeColor = document.getElementById("themeColor");
   if (themeColor) {
-    themeColor.innerHTML = getThemeColor(themeName);
+    themeColor.innerHTML = getThemeColor();
   }
 }
-window.changeTheme("");
+window.changeTheme("darkBlueTheme");
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );

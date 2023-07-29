@@ -11,6 +11,8 @@
 body {
     font-family: robotoThin;
     min-height: 100vh;
+    background-color: var(--A12500);
+    overflow-y: scroll;
 }
 
 #root {
@@ -25,7 +27,7 @@ body {
 
 .main-body {
     position: relative;
-    min-height: 80vh;
+    min-height: 85vh;
 }
 
 .font-roboto-regular {
