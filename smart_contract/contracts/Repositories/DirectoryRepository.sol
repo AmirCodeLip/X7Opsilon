@@ -61,10 +61,14 @@ contract DirectoryRepository is BaseNameDeclaration {
         directoryInfoParent.FilesCount = newModel.FilesCount;
     }
 
-    function getSubDirectories(
-        string memory directoryId
-    ) public view returns (DirectoryFrame[] memory, DirectoryInfoFrame memory) {
-        (bool directoryNull, ) = getDirectory(directoryId);
+    function getSubDirectories(string memory directoryId)
+        public
+        view
+        returns (DirectoryFrame[] memory, DirectoryInfoFrame memory)
+    {
+        (bool directoryNull,) = getDirectory(
+            directoryId
+        );
         if (directoryNull) {
             revert notfound();
         }
@@ -90,9 +94,11 @@ contract DirectoryRepository is BaseNameDeclaration {
         return (result, directoryInfo);
     }
 
-    function getRoot(
-        address user
-    ) public view returns (bool isNull, DirectoryFrame memory root) {
+    function getRoot(address user)
+        public
+        view
+        returns (bool isNull, DirectoryFrame memory root)
+    {
         DirectoryFrame memory _root = rootsMap[user];
         if (bytes(_root.Id).length == 0 || _root.Creator != user) {
             isNull = true;
@@ -103,9 +109,11 @@ contract DirectoryRepository is BaseNameDeclaration {
         return (isNull, root);
     }
 
-    function getDirectory(
-        string memory id
-    ) internal view returns (bool isNull, DirectoryFrame memory directory) {
+    function getDirectory(string memory id)
+        internal
+        view
+        returns (bool isNull, DirectoryFrame memory directory)
+    {
         DirectoryFrame memory _directory = directoriesMap[id];
         bytes memory b_directoryId = bytes(_directory.Id);
         bytes memory b_id = bytes(_directory.Id);
@@ -120,9 +128,7 @@ contract DirectoryRepository is BaseNameDeclaration {
         return (isNull, directory);
     }
 
-    function getDirectoryInfo(
-        string memory id
-    )
+    function getDirectoryInfo(string memory id)
         public
         view
         returns (bool isNull, DirectoryInfoFrame memory directoryInfo)
@@ -142,10 +148,10 @@ contract DirectoryRepository is BaseNameDeclaration {
     }
 
     //get directiry and if it's don't have id return root
-    function getDirectoryOrRoot(
-        address user,
-        string memory id
-    ) public returns (DirectoryFrame memory) {
+    function getDirectoryOrRoot(address user, string memory id)
+        public
+        returns (DirectoryFrame memory)
+    {
         bytes memory b_Id = bytes(id);
         if (b_Id.length == 0) {
             return getOrCreateRoot(user);
@@ -161,9 +167,11 @@ contract DirectoryRepository is BaseNameDeclaration {
     }
 
     //create {DirectoryInfo} if not exist then return
-    function getOrCreateDirectoryInfo(
-        string memory id
-    ) public payable returns (DirectoryInfoFrame memory) {
+    function getOrCreateDirectoryInfo(string memory id)
+        public
+        payable
+        returns (DirectoryInfoFrame memory)
+    {
         (
             bool isNull,
             DirectoryInfoFrame memory directoryInfo
@@ -176,9 +184,11 @@ contract DirectoryRepository is BaseNameDeclaration {
     }
 
     //create {DirectoryFrame} if not exist then return
-    function getOrCreateRoot(
-        address user
-    ) public payable returns (DirectoryFrame memory) {
+    function getOrCreateRoot(address user)
+        public
+        payable
+        returns (DirectoryFrame memory)
+    {
         (bool isNull, DirectoryFrame memory root) = getRoot(user);
         if (isNull) {
             string memory rootId = _uniqueIdGenerator.uniqId();

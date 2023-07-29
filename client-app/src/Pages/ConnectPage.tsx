@@ -13,6 +13,7 @@ export default function ConnectPage() {
     const [cookies, setCookies] = useCookies(["settingCookie"]);
     let setting = new Setting(cookies.settingCookie, setCookies);
     async function connectMetamask() {
+        debugger;
         if (contractContext.applicationState == ApplicationStates.metamaskConnecting) {
             return;
         }

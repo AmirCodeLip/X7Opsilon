@@ -6,6 +6,7 @@ import {UniqueIdGenerator} from "./BusinessHelper/UniqueIdGenerator.sol";
 import {FileRepository} from "./Repositories/FileRepository.sol";
 import {DirectoryRepository} from "./Repositories/DirectoryRepository.sol";
 import {DirectoryFrame} from "./Entities/DirectoryFrame.sol";
+import {FileFrame} from "./Entities/FileFrame.sol";
 import {DirectoryInfoFrame} from "./Entities/DirectoryInfoFrame.sol";
 import "./ViewModels/FileOutput.sol";
 
@@ -20,16 +21,15 @@ contract ContractLogic {
         fileRepository = new FileRepository(uniqueIdGenerator);
     }
 
-    function createDirectory(
-        string memory name,
-        string memory parentId
-    ) public payable returns (string memory) {
+    function createDirectory(string memory name, string memory parentId)
+        public
+        payable
+        returns (string memory)
+    {
         return (directoryRepository.add(msg.sender, name, parentId));
     }
 
-    function getDirectoryData(
-        string memory id
-    )
+    function getDirectoryData(string memory id)
         public
         view
         returns (
@@ -42,10 +42,7 @@ contract ContractLogic {
             DirectoryFrame[] memory directories,
             DirectoryInfoFrame memory directoryInfo
         ) = directoryRepository.getSubDirectories(id);
-        FileOutput[] memory files = fileRepository.getSubFiles(
-            id,
-            directoryInfo
-        );
+        FileOutput[] memory files = fileRepository.getSubFiles(directoryInfo);
         return (directories, files, directoryInfo);
     }
 
@@ -75,7 +72,7 @@ contract ContractLogic {
         string memory fileID = fileRepository.add(
             msg.sender,
             fileName,
-            directoryId,
+            directory.Id,
             fileData
         );
         return fileID;

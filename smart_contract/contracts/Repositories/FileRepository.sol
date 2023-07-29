@@ -18,13 +18,14 @@ contract FileRepository is BaseNameDeclaration {
         _uniqueIdGenerator = uniqueIdGenerator;
     }
 
-    function getSubFiles(
-        string memory directoryId,
-        DirectoryInfoFrame memory directoryInfo
-    ) public view returns (FileOutput[] memory) {
+    function getSubFiles(DirectoryInfoFrame memory directoryInfo)
+        public
+        view
+        returns (FileOutput[] memory)
+    {
         FileOutput[] memory result = new FileOutput[](directoryInfo.FilesCount);
         uint256 j = 0;
-        bytes memory b_directoryId = bytes(directoryId);
+        bytes memory b_directoryId = bytes(directoryInfo.DirectoryId);
         for (uint256 i = 0; i < count; i++) {
             FileFrame memory item = data[i];
             bytes memory fileDirectoryId = bytes(item.DirectoryId);
@@ -59,9 +60,11 @@ contract FileRepository is BaseNameDeclaration {
         return id;
     }
 
-    function separateNameExe(
-        string memory fullName
-    ) public pure returns (string memory, string memory) {
+    function separateNameExe(string memory fullName)
+        public
+        pure
+        returns (string memory, string memory)
+    {
         uint256 extensionCount = 0;
         bytes memory extension = new bytes(50);
         bytes memory b_fullName = bytes(fullName);
@@ -85,5 +88,15 @@ contract FileRepository is BaseNameDeclaration {
         uint256 nameCount = (b_fullName.length - extensionCount - 1);
         bytes memory fileName = Infrastructure.copyBytes(b_fullName, nameCount);
         return (string(fileName), string(extension));
+    }
+
+    function getByIndex(uint256 index)
+        public
+        payable
+        returns (FileFrame memory)
+    {
+        FileFrame storage file = data[index];
+
+        return file;
     }
 }

@@ -12,6 +12,11 @@
 			},
 			{
 				"inputs": [],
+				"name": "notfoundDirectory",
+				"type": "error"
+			},
+			{
+				"inputs": [],
 				"name": "unsupportedName",
 				"type": "error"
 			},
@@ -49,11 +54,11 @@
 	},
 	"sources": {
 		"XOpsilon Contract/Repositories/BaseNameDeclaration.sol": {
-			"keccak256": "0x2a86f65c0169290ad8a9665fa4ade31d9aee4489315d647d0338d5828e4e48a4",
+			"keccak256": "0x3af6fde0978e96bcd384312cb60c4e6e7ab226a4080d51055ad8f296078bd0b2",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://bb450456a015ce3ac1f07c6eb4e49c450de14c43e0ea67e96fd52da8a8d7ba51",
-				"dweb:/ipfs/QmVWtTcECUNK2keoePUPAPZp8a9td685DM5VGiTwBbxnM2"
+				"bzz-raw://1822db8c1b9eeecff5d1394a2ae18bd3e9b587d101e4e658d34f0140d008137f",
+				"dweb:/ipfs/QmU6sGJejDtnzCL1VRPwk3Uw5XTNZnmoQF78rXMDQ7vPTr"
 			]
 		}
 	},

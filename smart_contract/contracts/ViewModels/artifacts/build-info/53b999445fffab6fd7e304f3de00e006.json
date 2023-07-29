@@ -1,0 +1,164 @@
+{
+	"id": "53b999445fffab6fd7e304f3de00e006",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.18",
+	"solcLongVersion": "0.8.18+commit.87f61d96",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"XOpsilon Contract/ViewModels/FileOutput.sol": {
+				"content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8;\r\n\r\nstruct FileOutput {\r\n    string Id;\r\n    string Name;\r\n    string Extension;\r\n}"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": false,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			}
+		}
+	},
+	"output": {
+		"sources": {
+			"XOpsilon Contract/ViewModels/FileOutput.sol": {
+				"ast": {
+					"absolutePath": "XOpsilon Contract/ViewModels/FileOutput.sol",
+					"exportedSymbols": {
+						"FileOutput": [
+							8
+						]
+					},
+					"id": 9,
+					"license": "MIT",
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 1,
+							"literals": [
+								"solidity",
+								"^",
+								"0.8"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "33:21:0"
+						},
+						{
+							"canonicalName": "FileOutput",
+							"id": 8,
+							"members": [
+								{
+									"constant": false,
+									"id": 3,
+									"mutability": "mutable",
+									"name": "Id",
+									"nameLocation": "90:2:0",
+									"nodeType": "VariableDeclaration",
+									"scope": 8,
+									"src": "83:9:0",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_string_storage_ptr",
+										"typeString": "string"
+									},
+									"typeName": {
+										"id": 2,
+										"name": "string",
+										"nodeType": "ElementaryTypeName",
+										"src": "83:6:0",
+										"typeDescriptions": {
+											"typeIdentifier": "t_string_storage_ptr",
+											"typeString": "string"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 5,
+									"mutability": "mutable",
+									"name": "Name",
+									"nameLocation": "106:4:0",
+									"nodeType": "VariableDeclaration",
+									"scope": 8,
+									"src": "99:11:0",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_string_storage_ptr",
+										"typeString": "string"
+									},
+									"typeName": {
+										"id": 4,
+										"name": "string",
+										"nodeType": "ElementaryTypeName",
+										"src": "99:6:0",
+										"typeDescriptions": {
+											"typeIdentifier": "t_string_storage_ptr",
+											"typeString": "string"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 7,
+									"mutability": "mutable",
+									"name": "Extension",
+									"nameLocation": "124:9:0",
+									"nodeType": "VariableDeclaration",
+									"scope": 8,
+									"src": "117:16:0",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_string_storage_ptr",
+										"typeString": "string"
+									},
+									"typeName": {
+										"id": 6,
+										"name": "string",
+										"nodeType": "ElementaryTypeName",
+										"src": "117:6:0",
+										"typeDescriptions": {
+											"typeIdentifier": "t_string_storage_ptr",
+											"typeString": "string"
+										}
+									},
+									"visibility": "internal"
+								}
+							],
+							"name": "FileOutput",
+							"nameLocation": "65:10:0",
+							"nodeType": "StructDefinition",
+							"scope": 9,
+							"src": "58:79:0",
+							"visibility": "public"
+						}
+					],
+					"src": "33:104:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}

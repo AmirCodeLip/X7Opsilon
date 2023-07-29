@@ -23,6 +23,11 @@
 			},
 			{
 				"inputs": [],
+				"name": "notfoundDirectory",
+				"type": "error"
+			},
+			{
+				"inputs": [],
 				"name": "unsupportedName",
 				"type": "error"
 			},
@@ -30,6 +35,383 @@
 				"inputs": [],
 				"name": "unsupportedSize",
 				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "parentId",
+						"type": "string"
+					}
+				],
+				"name": "add",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "id",
+						"type": "string"
+					}
+				],
+				"name": "getDirectoryInfo",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "isNull",
+						"type": "bool"
+					},
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "DirectoryId",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "FilesCount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "DirectoriesCount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "Size",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct DirectoryInfoFrame",
+						"name": "directoryInfo",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "id",
+						"type": "string"
+					}
+				],
+				"name": "getDirectoryOrRoot",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "Id",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "ParentId",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "Name",
+								"type": "string"
+							},
+							{
+								"internalType": "address",
+								"name": "Creator",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "DateCreated",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct DirectoryFrame",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "id",
+						"type": "string"
+					}
+				],
+				"name": "getOrCreateDirectoryInfo",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "DirectoryId",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "FilesCount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "DirectoriesCount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "Size",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct DirectoryInfoFrame",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getOrCreateRoot",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "Id",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "ParentId",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "Name",
+								"type": "string"
+							},
+							{
+								"internalType": "address",
+								"name": "Creator",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "DateCreated",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct DirectoryFrame",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getRoot",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "isNull",
+						"type": "bool"
+					},
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "Id",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "ParentId",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "Name",
+								"type": "string"
+							},
+							{
+								"internalType": "address",
+								"name": "Creator",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "DateCreated",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct DirectoryFrame",
+						"name": "root",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "directoryId",
+						"type": "string"
+					}
+				],
+				"name": "getSubDirectories",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "Id",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "ParentId",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "Name",
+								"type": "string"
+							},
+							{
+								"internalType": "address",
+								"name": "Creator",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "DateCreated",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct DirectoryFrame[]",
+						"name": "",
+						"type": "tuple[]"
+					},
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "DirectoryId",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "FilesCount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "DirectoriesCount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "Size",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct DirectoryInfoFrame",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "id",
+						"type": "string"
+					},
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "DirectoryId",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "FilesCount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "DirectoriesCount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "Size",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct DirectoryInfoFrame",
+						"name": "newModel",
+						"type": "tuple"
+					}
+				],
+				"name": "updateDirectoryInfo",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -100,18 +482,19 @@
 			]
 		},
 		"XOpsilon Contract/BusinessHelper/UniqueIdGenerator.sol": {
-			"keccak256": "0x1349c604ea9e4c4108ad799e3d629cb266c94d39a6892d6cf530f94b9729768b",
+			"keccak256": "0xc2458afdd1f387a97697f50038ac1ad8fbaf2f59e7a2ba668c95a61ad13b8637",
+			"license": "MIT",
 			"urls": [
-				"bzz-raw://f3cda3cc01b66cf0c9ff44e5f7c8f29bb2ec55c6b52aa0a9f1653ac01093bac7",
-				"dweb:/ipfs/QmQtFBvNqc1f6GQx1SFCDRYRkYg5R95nsEmx3zh2woAGno"
+				"bzz-raw://fb4823c7e4a52b5a65631c89fd08bdc5a313a3a05595293c92e97f74fd63ed8b",
+				"dweb:/ipfs/QmbuvzVKvYwro4hGtvPopL2AQXSq9JZ78YGHKaPLtnBgZB"
 			]
 		},
 		"XOpsilon Contract/Entities/DirectoryFrame.sol": {
-			"keccak256": "0x6d20074120ab281d29ad04ffdad76f8a6789dcb8e8fc5e413c67dbbcd65dc89c",
+			"keccak256": "0x5d83bc2cf961722be76e752674163e204fc41d03192800c24844b721407b0506",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://eafb175f9b88430d6a06b2c15cacf7d91ab7ef8b0b4722a6a474bd1d98be19db",
-				"dweb:/ipfs/QmPZ1p2bG2wapJ95NcB82Yn1Gx3CufAu8xxsPnicte22yx"
+				"bzz-raw://adea43412e94508b97ee5c48b39abfdd39ab14cc3511e3a8c6ac2681970666b6",
+				"dweb:/ipfs/QmRgQsRLa5RFBSEBMyXeLHpQeEu3TfArZMgLJpLtRRQ2ky"
 			]
 		},
 		"XOpsilon Contract/Entities/DirectoryInfoFrame.sol": {
@@ -123,19 +506,19 @@
 			]
 		},
 		"XOpsilon Contract/Repositories/BaseNameDeclaration.sol": {
-			"keccak256": "0x2a86f65c0169290ad8a9665fa4ade31d9aee4489315d647d0338d5828e4e48a4",
+			"keccak256": "0x3af6fde0978e96bcd384312cb60c4e6e7ab226a4080d51055ad8f296078bd0b2",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://bb450456a015ce3ac1f07c6eb4e49c450de14c43e0ea67e96fd52da8a8d7ba51",
-				"dweb:/ipfs/QmVWtTcECUNK2keoePUPAPZp8a9td685DM5VGiTwBbxnM2"
+				"bzz-raw://1822db8c1b9eeecff5d1394a2ae18bd3e9b587d101e4e658d34f0140d008137f",
+				"dweb:/ipfs/QmU6sGJejDtnzCL1VRPwk3Uw5XTNZnmoQF78rXMDQ7vPTr"
 			]
 		},
 		"XOpsilon Contract/Repositories/DirectoryRepository.sol": {
-			"keccak256": "0x60a0dc857b68bbc2c28dde3b98fbc0a4d76f5a5619e11b49f6af58c1808ab439",
+			"keccak256": "0xe620018587a78e953fa672f337b234db77a88ef22cec6452bfeef6bd69e32dc8",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://2d8e9ba9bb5683b04988c7c99b0ffc3e8ad983e65541dfcec72f9d8002948f44",
-				"dweb:/ipfs/QmWTGRMuD48fevV7b42sQBgxbd262pZ6H5RVxUxRhyDH7R"
+				"bzz-raw://6ae6e86486adf36d6d7c80e579bc4290a4e70daa7b750174c25c2622bfce0b2d",
+				"dweb:/ipfs/QmNj1cFJrQAEpYfSr88tm2joGzqjV97fFbFRLgmSufUQmG"
 			]
 		}
 	},

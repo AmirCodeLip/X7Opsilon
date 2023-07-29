@@ -22,8 +22,6 @@ export const ContractContextProvider = (params: { children: JSX.Element }) => {
             setAccounts(accounts[0]);
             const signer = await provider!.getSigner();
             const address = await signer.getAddress();
-            console.log(address);
-
             contractAccounts(new ethers.Contract(ContractLogicAddress, ContractLogicAbi, signer));
             state = ApplicationStates.metamaskConnected;
         } catch (ex: any) {
