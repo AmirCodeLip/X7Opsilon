@@ -9,7 +9,7 @@ export default function DrivePage() {
     const createFolderRef = React.createRef<HTMLButtonElement>();
     const [directories, setDirectories] = React.useState<Array<DirectoryBlock> | null>(null);
     const [modalState, setModalState] = React.useState<"none" | "showDirectoryModal">("none");
-    var directoryID: string | null = null;
+    const [directoryID, setDirectoryID] = React.useState<string | null>(null);
     var fileInput = document.createElement("input");
     fileInput.type = "file";
     fileInput.multiple = true;
@@ -22,34 +22,39 @@ export default function DrivePage() {
             }
         }
     }
+
     async function setup() {
         var directory = await contractContext.fileManager.getRoot();
         if (directory !== null) {
-            directoryID = directory.Id;
-            refresh();
+            setDirectoryID(directory.Id);
         }
         else {
             setDirectories(null);
         }
     }
+
     async function refresh() {
         if (directoryID != null) {
             let directoryData = await contractContext.fileManager.getDirectoryData(directoryID!);
             setDirectories(directoryData.Directories);
-            console.log(directoryData);
         }
     }
+
     function closeModal() {
         setModalState("none");
     }
+
     async function createFolder() {
         createFolderRef.current!.disabled = true;
         closeModal();
-        let response = await contractContext.fileManager.createDirectory(folderRef.current?.value!, "");
+        let cFolderID = folderRef.current?.value!;
+        let response = await contractContext.fileManager.createDirectory(cFolderID, "");
+        debugger;
         if (response.success) {
             await refresh();
         }
     }
+
     function showDirectoryModal() {
         if (folderRef.current !== null)
             folderRef.current.value = "";
@@ -57,9 +62,14 @@ export default function DrivePage() {
             createFolderRef.current.disabled = false;
         setModalState("showDirectoryModal");
     }
+
     React.useEffect(() => {
         setup();
     }, []);
+    React.useEffect(() => {
+        refresh();
+    }, [directoryID]);
+
     return (
         <>
             <div className="border-solid border-b-2 border-A23456 py-2 bg-A12500">

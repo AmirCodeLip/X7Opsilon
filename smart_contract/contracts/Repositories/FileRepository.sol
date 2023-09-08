@@ -5,31 +5,31 @@ import "../Entities/FileFrame.sol";
 import "../Entities/DirectoryInfoFrame.sol";
 import "./BaseNameDeclaration.sol";
 import {UniqueIdGenerator} from "../BusinessHelper/UniqueIdGenerator.sol";
-import "../BusinessHelper/Infrastructure.sol";
+import "../BusinessHelper/BaseWorks.sol";
 import "../ViewModels/FileOutput.sol";
 
 contract FileRepository is BaseNameDeclaration {
     //data of files
     FileFrame[] private data;
     uint256 private count = 0;
+    BaseWorks private _baseWorks;
     UniqueIdGenerator private _uniqueIdGenerator;
 
     constructor(UniqueIdGenerator uniqueIdGenerator) {
         _uniqueIdGenerator = uniqueIdGenerator;
+        _baseWorks = new BaseWorks();
     }
 
-    function getSubFiles(DirectoryInfoFrame memory directoryInfo)
-        public
-        view
-        returns (FileOutput[] memory)
-    {
+    function getSubFiles(
+        DirectoryInfoFrame memory directoryInfo
+    ) public view returns (FileOutput[] memory) {
         FileOutput[] memory result = new FileOutput[](directoryInfo.FilesCount);
         uint256 j = 0;
         bytes memory b_directoryId = bytes(directoryInfo.DirectoryId);
         for (uint256 i = 0; i < count; i++) {
             FileFrame memory item = data[i];
             bytes memory fileDirectoryId = bytes(item.DirectoryId);
-            if (Infrastructure.bytesEquals(b_directoryId, fileDirectoryId)) {
+            if (_baseWorks.bytesEquals(b_directoryId, fileDirectoryId)) {
                 result[j++] = FileOutput(item.Id, item.Name, item.Extension);
             }
         }
@@ -60,11 +60,9 @@ contract FileRepository is BaseNameDeclaration {
         return id;
     }
 
-    function separateNameExe(string memory fullName)
-        public
-        pure
-        returns (string memory, string memory)
-    {
+    function separateNameExe(
+        string memory fullName
+    ) public view returns (string memory, string memory) {
         uint256 extensionCount = 0;
         bytes memory extension = new bytes(50);
         bytes memory b_fullName = bytes(fullName);
@@ -83,18 +81,16 @@ contract FileRepository is BaseNameDeclaration {
                 revert unsupportedName();
             }
         }
-        extension = Infrastructure.copyBytes(extension, extensionCount);
-        extension = Infrastructure.reverseBytes(extension);
+        extension = _baseWorks.copyBytes(extension, extensionCount);
+        extension = _baseWorks.reverseBytes(extension);
         uint256 nameCount = (b_fullName.length - extensionCount - 1);
-        bytes memory fileName = Infrastructure.copyBytes(b_fullName, nameCount);
+        bytes memory fileName = _baseWorks.copyBytes(b_fullName, nameCount);
         return (string(fileName), string(extension));
     }
 
-    function getByIndex(uint256 index)
-        public
-        payable
-        returns (FileFrame memory)
-    {
+    function getByIndex(
+        uint256 index
+    ) public payable returns (FileFrame memory) {
         FileFrame storage file = data[index];
 
         return file;

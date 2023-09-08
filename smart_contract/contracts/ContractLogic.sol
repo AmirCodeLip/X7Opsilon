@@ -1,35 +1,46 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8;
-import "@openzeppelin/contracts/utils/Strings.sol";
-import {Infrastructure} from "./BusinessHelper/Infrastructure.sol";
 import {UniqueIdGenerator} from "./BusinessHelper/UniqueIdGenerator.sol";
 import {FileRepository} from "./Repositories/FileRepository.sol";
 import {DirectoryRepository} from "./Repositories/DirectoryRepository.sol";
 import {DirectoryFrame} from "./Entities/DirectoryFrame.sol";
 import {FileFrame} from "./Entities/FileFrame.sol";
 import {DirectoryInfoFrame} from "./Entities/DirectoryInfoFrame.sol";
+import {IDT2} from "./BusinessHelper/IDT2.sol";
+import "./BusinessHelper/BaseWorks.sol";
 import "./ViewModels/FileOutput.sol";
 
 contract ContractLogic {
-    UniqueIdGenerator private uniqueIdGenerator;
+    UniqueIdGenerator private _uniqueIdGenerator;
     DirectoryRepository private directoryRepository;
     FileRepository private fileRepository;
+    IDT2 private _idt;
+    event RootResult(string id, address creator);
+    event DirectoryCreated(string id, string directoryId);
+    event FileUploaded(string id, string directoryId);
 
     constructor() {
-        uniqueIdGenerator = new UniqueIdGenerator();
-        directoryRepository = new DirectoryRepository(uniqueIdGenerator);
-        fileRepository = new FileRepository(uniqueIdGenerator);
+        _idt = new IDT2();
+        _uniqueIdGenerator = new UniqueIdGenerator(_idt);
+        directoryRepository = new DirectoryRepository(_uniqueIdGenerator);
+        fileRepository = new FileRepository(_uniqueIdGenerator);
     }
 
-    function createDirectory(string memory name, string memory parentId)
-        public
-        payable
-        returns (string memory)
-    {
-        return (directoryRepository.add(msg.sender, name, parentId));
+    function createDirectory(
+        string memory name,
+        string memory parentId
+    ) public payable {
+        (string memory id, string memory directoryId) = directoryRepository.add(
+            msg.sender,
+            name,
+            parentId
+        );
+        emit DirectoryCreated(id, directoryId);
     }
 
-    function getDirectoryData(string memory id)
+    function getDirectoryData(
+        string memory id
+    )
         public
         view
         returns (
@@ -46,12 +57,11 @@ contract ContractLogic {
         return (directories, files, directoryInfo);
     }
 
-    function getOrCreateRoot()
-        public
-        payable
-        returns (DirectoryFrame memory root)
-    {
-        return (directoryRepository.getOrCreateRoot(msg.sender));
+    function getOrCreateRoot() public payable {
+        DirectoryFrame memory root = directoryRepository.getOrCreateRoot(
+            msg.sender
+        );
+        emit RootResult(root.Id, root.Creator);
     }
 
     function getRoot() public view returns (bool, DirectoryFrame memory) {
@@ -62,7 +72,7 @@ contract ContractLogic {
         string memory directoryId,
         string memory fileName,
         bytes memory fileData
-    ) public payable returns (string memory) {
+    ) public payable {
         DirectoryFrame memory directory = directoryRepository
             .getDirectoryOrRoot(msg.sender, directoryId);
         DirectoryInfoFrame memory directoryInfo = directoryRepository
@@ -75,6 +85,6 @@ contract ContractLogic {
             directory.Id,
             fileData
         );
-        return fileID;
+        emit FileUploaded(fileID, directoryId);
     }
 }

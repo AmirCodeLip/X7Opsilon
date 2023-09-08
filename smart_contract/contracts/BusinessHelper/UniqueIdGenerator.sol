@@ -1,8 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8;
-import {IDT} from "./IDT.sol";
+import {IDT2} from "./IDT2.sol";
 
 contract UniqueIdGenerator {
+    IDT2 private _idt;
+
+    constructor(IDT2 idt) {
+        _idt = idt;
+    }
+
     uint256 counter = 1;
 
     function fixUChar(bytes1 i) private pure returns (bytes1) {
@@ -52,7 +58,7 @@ contract UniqueIdGenerator {
     }
 
     function uniqId() public payable returns (string memory) {
-        bytes memory dn = bytes(IDT.strNow());
+        bytes memory dn = bytes(_idt.strNow());
         bytes memory result = new bytes(55);
         for (uint256 i = 0; i < result.length; i++) {
             result[i] = 0x5F;

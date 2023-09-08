@@ -1,3 +1,3 @@
 import ContractLogic from "./Jsons/ContractLogic.json"
-export const ContractLogicAddress: string = "0x43687A9b737a014d264dE961b00689B0e70Ff696";
+export const ContractLogicAddress: string = "0x36F705f8cC596b218A1849310Cc3aEE66374dBE7";
 export const ContractLogicAbi = ContractLogic.abi;
