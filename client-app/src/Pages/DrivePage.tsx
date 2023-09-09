@@ -1,13 +1,14 @@
 import React from "react";
 import { ContractContext } from "./../Contexts/ContractContext";
 import { Icons } from "../ThemeProvider";
-import { DirectoryBlock } from "../X7OpsilonInformation/Interfaces/ContractLogicTypes";
+import { DirectoryBlock, FileBlock } from "../X7OpsilonInformation/Interfaces/ContractLogicTypes";
 
 export default function DrivePage() {
     const contractContext = React.useContext(ContractContext)!!;
     const folderRef = React.createRef<HTMLInputElement>();
     const createFolderRef = React.createRef<HTMLButtonElement>();
     const [directories, setDirectories] = React.useState<Array<DirectoryBlock> | null>(null);
+    const [files, setFiles] = React.useState<Array<FileBlock> | null>(null);
     const [modalState, setModalState] = React.useState<"none" | "showDirectoryModal">("none");
     const [directoryID, setDirectoryID] = React.useState<string | null>(null);
     var fileInput = document.createElement("input");
@@ -37,6 +38,7 @@ export default function DrivePage() {
         if (directoryID != null) {
             let directoryData = await contractContext.fileManager.getDirectoryData(directoryID!);
             setDirectories(directoryData.Directories);
+            setFiles(directoryData.Files);
         }
     }
 
@@ -49,7 +51,6 @@ export default function DrivePage() {
         closeModal();
         let cFolderID = folderRef.current?.value!;
         let response = await contractContext.fileManager.createDirectory(cFolderID, "");
-        debugger;
         if (response.success) {
             await refresh();
         }
@@ -82,7 +83,7 @@ export default function DrivePage() {
                     </a>
                 </div>
             </div>
-            {(directories == null) &&
+            {(directories == null && files == null) &&
                 <div className="absolute top-2/4 w-full color-A19500">
                     <div className="flex flex-wrap items-center justify-center">
                         <div className="border-solid border-2 px-2 border-A23456 bg-A12500 rounded-sm w-1/4 p-6">
@@ -96,7 +97,7 @@ export default function DrivePage() {
                     </div>
                 </div>
             }
-            {directories != null &&
+            {(directories != null || files != null) &&
                 <div className="grid mt-3 mx-2
                     lg:grid-cols-6 gap-2
                     md:grid-cols-4 md:gap-2
@@ -110,6 +111,16 @@ export default function DrivePage() {
                             </div>
                         </div>
                     )}
+                    {files!.map(file =>
+                        <div key={file.Id} className="border-solid border-2 px-2 rounded-lg
+                         border-A99999 bg-A12500 hover-color-A21221">
+                            <div className="py-4 px-2">
+                                <div className="flex justify-center"><Icons.Unknown_document_FILL0_wght700_GRAD200_opsz48 className="w-28"></Icons.Unknown_document_FILL0_wght700_GRAD200_opsz48></div>
+                                <div className="w-full h-8 mt-3 text-center cursor-default">{file.Name}</div>
+                            </div>
+                        </div>
+                    )}
+
                 </div>
             }
             {modalState == "showDirectoryModal" &&

@@ -2,7 +2,7 @@ require("@nomicfoundation/hardhat-toolbox");
 
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 const INFURA_API_KEY = "http://95.216.141.40:10002/";
-const privateKey = "f28e873541b1c742e8b54f7da936ff993a1cc234efa7cfc11216f578c474397f";
+const privateKey = "828df0a64db3064c0bd3da8f840235740ef81aee5ef8fe36b0efe9ff1a927875";
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
   networks: {
