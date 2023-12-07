@@ -1,8 +1,9 @@
 import React from "react";
-import { ContractContextType, ApplicationStates, StatusInfo, StatusType } from "../Types";
+import { ContractContextType, ApplicationStates, StatusInfo, SideModalState } from "../Types";
 import { ethers } from "ethers";
 import { ContractLogicAddress, ContractLogicAbi } from "./../X7OpsilonInformation/ContractData";
 import ContractLogic from "../X7OpsilonInformation/Interfaces/ContractLogic";
+import { X7FileProcess } from "./../X7OpsilonInformation/Interfaces/ContractLogicTypes";
 
 const { ethereum } = window;
 export const ContractContext = React.createContext<ContractContextType | null>(null)
@@ -12,6 +13,8 @@ export const ContractContextProvider = (params: { children: JSX.Element }) => {
     const [provider, setProvider] = React.useState<ethers.BrowserProvider | null>(null);
     const [account, setAccounts] = React.useState<string | null>(null);
     const [contract, contractAccounts] = React.useState<ethers.Contract | null>(null);
+    const [uploadList, setUploadList] = React.useState<X7FileProcess[]>([]);
+    const [modalState, setModalState] = React.useState<SideModalState>(SideModalState.close);
     async function metamaskConnection(fromTimeout: boolean = true) {
         let state = ApplicationStates.metamaskConnecting;
         try {
@@ -44,15 +47,21 @@ export const ContractContextProvider = (params: { children: JSX.Element }) => {
         applicationState: applicationState,
         statusInfo: statusInfo,
         provider: provider,
+        uploadProsses: uploadList,
+        rightModalState: modalState,
         get fileManager() {
             if (fileManager == null) {
                 fileManager = new ContractLogic(contract!);
             }
             return fileManager!;
         },
+        setRightModalState: setModalState,
         setStatusInfo: setStatusInfo,
         setProvider: setProvider,
-        setApplicationState: setApplicationState
+        setApplicationState: setApplicationState,
+        addUploadProsses: (uploadProcess) => {
+            setUploadList([...uploadList, uploadProcess]);
+        }
     };
     return (<ContractContext.Provider value={context} >
         {params.children}

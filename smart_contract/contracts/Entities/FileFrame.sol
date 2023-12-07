@@ -6,7 +6,6 @@ struct FileFrame {
     string DirectoryId;
     string Name;
     string Extension;
-    bytes FileData;
     address Creator;
     uint256 DateCreated;
 }

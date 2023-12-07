@@ -1,3 +1,4 @@
+import { createExportDeclaration } from "typescript";
 
 export interface DirectoryBlock {
     Id: string,
@@ -28,4 +29,20 @@ export interface DirectoryDataType {
 
 export interface TransactionResponse {
     success: boolean,
-};
+}
+
+
+export enum CreationStatus {
+    notSending, uploading, signContract
+}
+
+export interface X7FileProcess {
+    uploadPercent: number,
+    status: CreationStatus
+}
+export interface UploadResult {
+    Name: string,
+    Hash: string,
+    Size: string
+}
+// { ": "Capture.JPG", "": "QmagQrzugGNjXEtZLfV3WbxEcRWcnJ4gcBSuAmTYhDGT2K", "Size": "142294" }

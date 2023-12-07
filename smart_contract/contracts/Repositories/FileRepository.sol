@@ -38,26 +38,26 @@ contract FileRepository is BaseNameDeclaration {
 
     function add(
         address user,
+        string memory fileId,
         string memory fullName,
         string memory directoryId,
-        bytes memory fileData
+        string memory fileHash
     ) public isAllowedName(fullName, false) returns (string memory) {
-        string memory id = _uniqueIdGenerator.uniqId();
+        //string memory id = _uniqueIdGenerator.uniqId();
         (string memory name, string memory extension) = separateNameExe(
             fullName
         );
         FileFrame memory newFile = FileFrame(
-            id,
+            fileId,
             directoryId,
             name,
             extension,
-            fileData,
             user,
             block.timestamp
         );
         data.push(newFile);
         count++;
-        return id;
+        return fileId;
     }
 
     function separateNameExe(

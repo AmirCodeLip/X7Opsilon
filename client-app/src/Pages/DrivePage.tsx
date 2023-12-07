@@ -1,7 +1,9 @@
 import React from "react";
 import { ContractContext } from "./../Contexts/ContractContext";
+import { SideModalState } from "./../Types";
 import { Icons } from "../ThemeProvider";
 import { DirectoryBlock, FileBlock } from "../X7OpsilonInformation/Interfaces/ContractLogicTypes";
+import RightSideModal from "./RightSideModal"
 
 export default function DrivePage() {
     const contractContext = React.useContext(ContractContext)!!;
@@ -9,7 +11,6 @@ export default function DrivePage() {
     const createFolderRef = React.createRef<HTMLButtonElement>();
     const [directories, setDirectories] = React.useState<Array<DirectoryBlock> | null>(null);
     const [files, setFiles] = React.useState<Array<FileBlock> | null>(null);
-    const [modalState, setModalState] = React.useState<"none" | "showDirectoryModal">("none");
     const [directoryID, setDirectoryID] = React.useState<string | null>(null);
     var fileInput = document.createElement("input");
     fileInput.type = "file";
@@ -18,9 +19,7 @@ export default function DrivePage() {
         for (let i = 0; i < fileInput.files!.length; i++) {
             let file = fileInput.files?.item(i);
             let response = await contractContext.fileManager.uploadFile(directoryID, file!);
-            if (response.success) {
-                await refresh();
-            }
+            contractContext.addUploadProsses(response);
         }
     }
 
@@ -42,13 +41,9 @@ export default function DrivePage() {
         }
     }
 
-    function closeModal() {
-        setModalState("none");
-    }
-
     async function createFolder() {
         createFolderRef.current!.disabled = true;
-        closeModal();
+        contractContext.setRightModalState(SideModalState.close);
         let cFolderID = folderRef.current?.value!;
         let response = await contractContext.fileManager.createDirectory(cFolderID, "");
         if (response.success) {
@@ -61,7 +56,7 @@ export default function DrivePage() {
             folderRef.current.value = "";
         if (createFolderRef.current !== null)
             createFolderRef.current.disabled = false;
-        setModalState("showDirectoryModal");
+        contractContext.setRightModalState(SideModalState.showDirectory);
     }
 
     React.useEffect(() => {
@@ -123,12 +118,9 @@ export default function DrivePage() {
 
                 </div>
             }
-            {modalState == "showDirectoryModal" &&
-                <div className="h-screen justify-center items-center flex blur-box absolute top-0 w-full">
-                    <div className="z-10 bg-A12500 w-1/3 h-full p-3 rounded-md absolute right-0 top-0">
-                        <div className="h-6 mb-3">
-                            <Icons.Close_FILL0_wght400_GRAD0_opsz24 onClick={closeModal} className="float-right w-5" fill="var(--A19500)"></Icons.Close_FILL0_wght400_GRAD0_opsz24>
-                        </div>
+            {contractContext.rightModalState == SideModalState.showDirectory &&
+                <RightSideModal contractContext={contractContext}>
+                    <>
                         <div className="w-full justify-center relative">
                             <div className="color-A11221">Folder Name</div>
                             <input type="text" ref={folderRef} className="border-A11221 color-A11221"></input>
@@ -136,8 +128,8 @@ export default function DrivePage() {
                         <button onClick={createFolder} ref={createFolderRef} className="btn btn-primary float-right relative mt-5">
                             Create Directory
                         </button>
-                    </div>
-                </div >
+                    </>
+                </RightSideModal>
             }
         </>
     );

@@ -100,6 +100,10 @@ body {
     border-color: transparent;
 }
 
+.btn-short {
+    padding: 0;
+}
+
 input {
     width: 100%;
     border: none;

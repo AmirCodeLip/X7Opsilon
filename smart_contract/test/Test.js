@@ -1,7 +1,8 @@
 
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
-const { anyValue } = require("@nomicfoundation/hardhat-chai-matchers/withArgs");
+// const { anyValue } = require("@nomicfoundation/hardhat-chai-matchers/withArgs");
+const { v4: uuidv4, validate: uuidValidate } = require('uuid');
 
 describe("ContractLogic", function () {
     var contractLogic, rootId;
@@ -30,10 +31,11 @@ describe("ContractLogic", function () {
     });
 
     it("must upload new file", async function () {
-        await expect(contractLogic.uploadFile(rootId, "test.txt", "0x11112222"))
+        let fileId = uuidv4();
+        await expect(contractLogic.uploadFile(rootId, fileId, "test.txt", "hash of the file"))
             .to.emit(contractLogic, "FileUploaded")
-            .withArgs(directoryId => {
-                return directoryId.length == 55;
+            .withArgs((fileId, directoryId) => {
+                return uuidValidate(fileId);
             }, rootId);
     });
 

@@ -1,13 +1,19 @@
 import { ethers } from "ethers";
 import ContractLogic from "./X7OpsilonInformation/Interfaces/ContractLogic";
+import { X7FileProcess } from "./X7OpsilonInformation/Interfaces/ContractLogicTypes";
+
 export interface ContractContextType {
     applicationState: ApplicationStates;
     statusInfo: StatusInfo;
     fileManager: ContractLogic;
-    provider: ethers.BrowserProvider | null
+    provider: ethers.BrowserProvider | null;
+    uploadProsses: X7FileProcess[],
+    rightModalState: SideModalState,
+    setRightModalState: React.Dispatch<React.SetStateAction<SideModalState>>,
     setStatusInfo: React.Dispatch<React.SetStateAction<StatusInfo>>;
     setProvider: React.Dispatch<React.SetStateAction<ethers.BrowserProvider | null>>;
-    setApplicationState: React.Dispatch<React.SetStateAction<ApplicationStates>>
+    setApplicationState: React.Dispatch<React.SetStateAction<ApplicationStates>>;
+    addUploadProsses: (uploadProcess: X7FileProcess) => void;
 }
 
 declare global {
@@ -23,7 +29,11 @@ export enum ApplicationStates {
 }
 
 export enum StatusType {
-    Valid, Error
+    valid, error
+}
+
+export enum SideModalState {
+    close, showDirectory, showUploads
 }
 
 export class StatusInfo {
@@ -32,6 +42,6 @@ export class StatusInfo {
         this.status = status ? status : this.status;
         this.msg = msg;
     }
-    status: StatusType = StatusType.Valid;
+    status: StatusType = StatusType.valid;
     msg?: string;
 }

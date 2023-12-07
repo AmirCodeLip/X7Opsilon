@@ -1,6 +1,11 @@
 import { debug } from "console";
 import { ethers } from "ethers";
-import { DirectoryBlock, FileBlock, DirectoryInfo, DirectoryDataType, TransactionResponse } from "./ContractLogicTypes";
+import { v4 as uuidv4 } from 'uuid';
+
+import {
+    DirectoryBlock, FileBlock, DirectoryInfo, DirectoryDataType, TransactionResponse, X7FileProcess,
+    CreationStatus, UploadResult
+} from "./ContractLogicTypes";
 
 export default class ContractLogic {
     contract: ethers.Contract;
@@ -81,17 +86,38 @@ export default class ContractLogic {
     }
 
     async uploadFile(directoryId: string | null, file: File) {
-        directoryId = directoryId == null ? "" : directoryId;
-        return new Promise<TransactionResponse>(async (resolve, reject) => {
-            let fileBytes = await this.fileToBytes(file);
-            try {
-                let response = await this.contract.uploadFile(directoryId, file.name, fileBytes);
-                resolve({
-                    success: true,
-                });
-            } catch (ex) {
-                resolve({ success: false });
-            }
+        // directoryId = directoryId == null ? "" : directoryId;
+        var addFile = async (fileHash: string) => {
+            let fileId = uuidv4();
+            await this.contract.uploadFile(directoryId, fileId, file.name, fileHash)
+        }
+
+        return new Promise<X7FileProcess>(async (resolve, reject) => {
+            let formdata = new FormData();
+            let uploadProcess: X7FileProcess = { uploadPercent: 0.1, status: CreationStatus.notSending };
+            let request = new XMLHttpRequest();
+            formdata.append("file", file);
+            request.upload.onprogress = function (e) {
+                let percentComplete = Math.ceil((e.loaded / e.total) * 100);
+                uploadProcess.uploadPercent = percentComplete;
+            };
+            request.onreadystatechange = function (oEvent) {
+                if (request.readyState === 2) {
+                    uploadProcess.status = CreationStatus.uploading;
+                }
+                if (request.readyState === 4) {
+                    if (request.status === 200) {
+                        let uploadResult = JSON.parse(request.responseText) as UploadResult;
+                        uploadProcess.status = CreationStatus.signContract;
+                        addFile(uploadResult.Hash);
+                    } else {
+                        console.log("Error", request.statusText);
+                    }
+                }
+            };
+            request.open("POST", "http://168.119.58.0:8090/upload", true);
+            request.send(formdata);
+            resolve(uploadProcess);
         });
     }
 

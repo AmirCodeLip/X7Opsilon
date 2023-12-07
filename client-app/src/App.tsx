@@ -1,20 +1,23 @@
 import React from 'react';
-import { ApplicationStates, StatusType } from "./Types";
+import { ApplicationStates, StatusType, SideModalState } from "./Types";
 import { ContractContext } from "./Contexts/ContractContext";
 import ConnectPage from './Pages/ConnectPage';
 import ErrorPage from './Pages/ErrorPage';
 import DrivePage from './Pages/DrivePage';
 import { Icons } from './ThemeProvider';
-
+import RightSideModal from "./Pages/RightSideModal";
 
 function App() {
   const contractContext = React.useContext(ContractContext)!!;
+  function showUploadModal() {
+    contractContext.setRightModalState(SideModalState.showUploads);
+  }
   //go to the connect page for authentication
   if (contractContext.applicationState == ApplicationStates.started || contractContext.applicationState == ApplicationStates.metamaskConnecting) {
     return (<ConnectPage></ConnectPage>);
   }
   //check if application have any error
-  else if (contractContext.statusInfo.status == StatusType.Error) {
+  else if (contractContext.statusInfo.status == StatusType.error) {
     return <ErrorPage error={contractContext.statusInfo.msg!}></ErrorPage>;
   }
   return (<>
@@ -31,13 +34,24 @@ function App() {
             <div className='font-roboto-regular color-A19500'>File Manager</div>
           </div>
         </div>
-        <div className="flex items-center md:order-2">
-          <span>Open user menu</span>
+        <div className="flex items-center md:order-2 relative right-4">
+          <span className='ml-5 btn btn-primary btn-short' onClick={showUploadModal}><Icons.Rainy_FILL0_wght400_GRAD0_opsz24 height='30' width='30' className="fill: var(--6C87FE);" fill="var(--A21221)"></Icons.Rainy_FILL0_wght400_GRAD0_opsz24></span>
         </div>
       </div>
     </nav>
     <div className='main-body bg-A15500'>
       <DrivePage></DrivePage>
+      {contractContext.rightModalState == SideModalState.showUploads &&
+        <RightSideModal contractContext={contractContext}>
+          <>
+            {contractContext.uploadProsses.map((x, i) => {
+              return (<div key={i} className="w-full justify-center relative">
+                <div className="color-A11221">{x.uploadPercent}</div>
+              </div>)
+            })}
+          </>
+        </RightSideModal>
+      }
     </div>
     <footer className='border-solid border-t-2 border-A23456 p-2 relative h-16 bottom-0 w-full bg-A12500'>
       <div className='flex justify-center items-center'>

@@ -17,7 +17,7 @@ export default function ConnectPage() {
             return;
         }
         if (window.ethereum == null) {
-            contractContext.setStatusInfo(new StatusInfo(StatusType.Error, "please install metamask"));
+            contractContext.setStatusInfo(new StatusInfo(StatusType.error, "please install metamask"));
         }
         else {
             if (contractContext.provider == null) {

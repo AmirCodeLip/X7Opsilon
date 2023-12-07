@@ -70,8 +70,9 @@ contract ContractLogic {
 
     function uploadFile(
         string memory directoryId,
+        string memory fileId,
         string memory fileName,
-        bytes memory fileData
+        string memory fileHash
     ) public payable {
         DirectoryFrame memory directory = directoryRepository
             .getDirectoryOrRoot(msg.sender, directoryId);
@@ -81,9 +82,10 @@ contract ContractLogic {
         directoryRepository.updateDirectoryInfo(directory.Id, directoryInfo);
         string memory fileID = fileRepository.add(
             msg.sender,
+            fileId,
             fileName,
             directory.Id,
-            fileData
+            fileHash
         );
         emit FileUploaded(fileID, directoryId);
     }
