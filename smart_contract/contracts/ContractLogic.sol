@@ -17,7 +17,7 @@ contract ContractLogic {
     IDT2 private _idt;
     event RootResult(string id, address creator);
     event DirectoryCreated(string id, string directoryId);
-    event FileUploaded(string id, string directoryId);
+    event FileUploaded(string id, string directoryId, string fileHash);
 
     constructor() {
         _idt = new IDT2();
@@ -87,6 +87,6 @@ contract ContractLogic {
             directory.Id,
             fileHash
         );
-        emit FileUploaded(fileID, directoryId);
+        emit FileUploaded(fileID, directoryId, fileHash);
     }
 }

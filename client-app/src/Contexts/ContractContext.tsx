@@ -2,8 +2,8 @@ import React from "react";
 import { ContractContextType, ApplicationStates, StatusInfo, SideModalState } from "../Types";
 import { ethers } from "ethers";
 import { ContractLogicAddress, ContractLogicAbi } from "./../X7OpsilonInformation/ContractData";
-import ContractLogic from "../X7OpsilonInformation/Interfaces/ContractLogic";
-import { X7FileProcess } from "./../X7OpsilonInformation/Interfaces/ContractLogicTypes";
+import ContractLogic from "../X7OpsilonInformation/Implementations/ContractLogic";
+import { X7FileProcess } from "./../X7OpsilonInformation/Implementations/ContractLogicTypes";
 
 const { ethereum } = window;
 export const ContractContext = React.createContext<ContractContextType | null>(null)
