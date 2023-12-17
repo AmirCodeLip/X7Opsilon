@@ -3,12 +3,19 @@ pragma solidity ^0.8;
 
 contract BaseNameDeclaration {
     ///not allowed characters in filename windows
-    bytes notAllowed = bytes('"\\/]:?<>|');
-    bytes1 dot = bytes1(".");
+    bool initialized;
+    bytes notAllowed;
+    bytes1 dot;
     error unsupportedName();
     error unsupportedSize();
     error notfound();
     error notfoundDirectory();
+
+    function baseSetup() public {
+        if (initialized) return;
+        notAllowed = bytes('"\\/]:?<>|');
+        dot = bytes1(".");
+    }
 
     modifier isAllowedName(string memory name, bool isdirectory) {
         bytes memory b_name = bytes(name);

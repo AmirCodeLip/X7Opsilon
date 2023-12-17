@@ -26,6 +26,8 @@ contract IDT2 {
 
     uint16 constant ORIGIN_YEAR = 1970;
 
+    function setup() public {}
+
     function isLeapYear(uint16 year) public pure returns (bool) {
         if (year % 4 != 0) {
             return false;

@@ -10,9 +10,10 @@ import {UniqueIdGenerator} from "../BusinessHelper/UniqueIdGenerator.sol";
 contract DirectoryRepository is BaseNameDeclaration {
     //data of files
     DirectoryFrame[] private data;
-    uint256 private count = 0;
+    uint256 private count;
     UniqueIdGenerator private _uniqueIdGenerator;
     BaseWorks private _baseWorks;
+    event RootCreated(string id, address creator);
     //get root by sender
     mapping(address => DirectoryFrame) private rootsMap;
     //get {DirectoryInfo} by directory id
@@ -20,9 +21,16 @@ contract DirectoryRepository is BaseNameDeclaration {
     //get {DirectoryFrame} by directory id
     mapping(string => DirectoryFrame) private directoriesMap;
 
-    constructor(UniqueIdGenerator uniqueIdGenerator) {
-        _uniqueIdGenerator = uniqueIdGenerator;
-        _baseWorks = new BaseWorks();
+    function setup(
+        address uniqueIdGeneratorAddress,
+        address baseWorksAddress
+    ) public {
+        _uniqueIdGenerator = UniqueIdGenerator(uniqueIdGeneratorAddress);
+        _baseWorks = BaseWorks(baseWorksAddress);
+        baseSetup();
+        if (initialized) return;
+        initialized = true;
+        count = 0;
     }
 
     function add(
@@ -192,6 +200,7 @@ contract DirectoryRepository is BaseNameDeclaration {
             count++;
             rootsMap[user] = root;
             directoriesMap[rootId] = root;
+            emit RootCreated(rootId, user);
         }
         return (root);
     }

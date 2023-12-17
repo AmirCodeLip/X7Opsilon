@@ -11,13 +11,20 @@ import "../ViewModels/FileOutput.sol";
 contract FileRepository is BaseNameDeclaration {
     //data of files
     FileFrame[] private data;
-    uint256 private count = 0;
+    uint256 private count;
     BaseWorks private _baseWorks;
     UniqueIdGenerator private _uniqueIdGenerator;
 
-    constructor(UniqueIdGenerator uniqueIdGenerator) {
-        _uniqueIdGenerator = uniqueIdGenerator;
-        _baseWorks = new BaseWorks();
+    function setup(
+        address uniqueIdGeneratorAddress,
+        address baseWorksAddress
+    ) public {
+        _uniqueIdGenerator = UniqueIdGenerator(uniqueIdGeneratorAddress);
+        _baseWorks = BaseWorks(baseWorksAddress);
+        baseSetup();
+        if (initialized) return;
+        initialized = true;
+        count = 0;
     }
 
     function getSubFiles(

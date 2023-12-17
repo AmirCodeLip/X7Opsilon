@@ -1,0 +1,509 @@
+{
+  "manifestVersion": "3.2",
+  "proxies": [
+    {
+      "address": "0x5338a989ceBBfE9f703Dba2587e6B027566C9F02",
+      "txHash": "0xd5487cb7c9a14c844cc1234d74109918dc1f9b848de5176ed2c4ee64a2e5b8d4",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xA2DdA1e368A4D0DfB1Ea8b420B56d0367636E5ba",
+      "txHash": "0x0a2555c477eaa88cd112ac9f644b2cd4f3d2e723e09d27c673ed3f39c7168e60",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x0e196734388c69539e96A3f7498dEbc03F2875A5",
+      "txHash": "0x33e4f06ffcf6104baad9741b246959822f8844bd91db6e8724af60bee7753cb3",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x43e812229373b17b51076464375AeAD761607738",
+      "txHash": "0xcca3b139e0568a3af2f737523fd00253a8648162b6fd30fcc3406bab23aaa529",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x80A4d40ab3CF1f69A5D7d1a810d8D80b46904895",
+      "txHash": "0xa6864ce94985c55229164e1dbe48e8275a4b5668f8cdd287de3d88ba3fc26849",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xC3B9caAf849fF0764Ec704eE2C3743D2b8B0a0D1",
+      "txHash": "0x59601da6e1223d058d09b7b6b02f7297e268b5af057b43cd1796dc8cdbb5b5ec",
+      "kind": "transparent"
+    }
+  ],
+  "impls": {
+    "f77eb19178aaaa7ff55dc2732b8c0bd6e1bfad11dc8f6d2ed059750f259166af": {
+      "address": "0x5306F9a6De451976c6A9CC15F3995F7C2c414654",
+      "txHash": "0xeb0f4cc7910ee774c459a42f069f6ebb5ff41b9f303e455e29b5f3ea6d26ee2e",
+      "layout": {
+        "solcVersion": "0.8.17",
+        "storage": [],
+        "types": {},
+        "namespaces": {}
+      }
+    },
+    "d0500d136f00eda7a84184c7b99dd4b4ea2af1fedbd7b5444efeb10c129d1d40": {
+      "address": "0x1E281F07CAD3C41272f78bdEfc960dc8877C55cA",
+      "txHash": "0xae7980e007a85d03a21d526c8f11f3908c02e7e56de39fc3574c6f0fe8dfd937",
+      "layout": {
+        "solcVersion": "0.8.17",
+        "storage": [],
+        "types": {},
+        "namespaces": {}
+      }
+    },
+    "d1640dedccf5c263be328a97ecbb4b94a6d3c4e2e5995b6a2b8f075e21565cb9": {
+      "address": "0x73050E715F12B2368543ef82e24658E05e79aD56",
+      "txHash": "0xe324b38c102d4ca8404619c73abc0d29855a5ab9cc82ee126e1db6ba6a2bed68",
+      "layout": {
+        "solcVersion": "0.8.17",
+        "storage": [
+          {
+            "label": "_idt",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_contract(IDT2)2516",
+            "contract": "UniqueIdGenerator",
+            "src": "contracts\\BusinessHelper\\UniqueIdGenerator.sol:6"
+          },
+          {
+            "label": "counter",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_uint256",
+            "contract": "UniqueIdGenerator",
+            "src": "contracts\\BusinessHelper\\UniqueIdGenerator.sol:7"
+          },
+          {
+            "label": "initialized",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_bool",
+            "contract": "UniqueIdGenerator",
+            "src": "contracts\\BusinessHelper\\UniqueIdGenerator.sol:8"
+          }
+        ],
+        "types": {
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(IDT2)2516": {
+            "label": "contract IDT2",
+            "numberOfBytes": "20"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        },
+        "namespaces": {}
+      }
+    },
+    "d84bac441f828bc077bbd162ebe3162948c88abcfcf5427fb1c40c9d19aab9e8": {
+      "address": "0x17171e6001E238943927D99D4F3bDD9D1605bBE8",
+      "txHash": "0x26309a21b291420fea566227da726a5fc99bfe07a4379b3c663e66a32f1f9cac",
+      "layout": {
+        "solcVersion": "0.8.17",
+        "storage": [
+          {
+            "label": "initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "BaseNameDeclaration",
+            "src": "contracts\\Repositories\\BaseNameDeclaration.sol:6"
+          },
+          {
+            "label": "notAllowed",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_bytes_storage",
+            "contract": "BaseNameDeclaration",
+            "src": "contracts\\Repositories\\BaseNameDeclaration.sol:7"
+          },
+          {
+            "label": "dot",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_bytes1",
+            "contract": "BaseNameDeclaration",
+            "src": "contracts\\Repositories\\BaseNameDeclaration.sol:8"
+          },
+          {
+            "label": "data",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_array(t_struct(DirectoryFrame)3091_storage)dyn_storage",
+            "contract": "DirectoryRepository",
+            "src": "contracts\\Repositories\\DirectoryRepository.sol:12"
+          },
+          {
+            "label": "count",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_uint256",
+            "contract": "DirectoryRepository",
+            "src": "contracts\\Repositories\\DirectoryRepository.sol:13"
+          },
+          {
+            "label": "_uniqueIdGenerator",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_contract(UniqueIdGenerator)2842",
+            "contract": "DirectoryRepository",
+            "src": "contracts\\Repositories\\DirectoryRepository.sol:14"
+          },
+          {
+            "label": "_baseWorks",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_contract(BaseWorks)1534",
+            "contract": "DirectoryRepository",
+            "src": "contracts\\Repositories\\DirectoryRepository.sol:15"
+          },
+          {
+            "label": "rootsMap",
+            "offset": 0,
+            "slot": "7",
+            "type": "t_mapping(t_address,t_struct(DirectoryFrame)3091_storage)",
+            "contract": "DirectoryRepository",
+            "src": "contracts\\Repositories\\DirectoryRepository.sol:18"
+          },
+          {
+            "label": "directoryInfoListMap",
+            "offset": 0,
+            "slot": "8",
+            "type": "t_mapping(t_string_memory_ptr,t_struct(DirectoryInfoFrame)3102_storage)",
+            "contract": "DirectoryRepository",
+            "src": "contracts\\Repositories\\DirectoryRepository.sol:20"
+          },
+          {
+            "label": "directoriesMap",
+            "offset": 0,
+            "slot": "9",
+            "type": "t_mapping(t_string_memory_ptr,t_struct(DirectoryFrame)3091_storage)",
+            "contract": "DirectoryRepository",
+            "src": "contracts\\Repositories\\DirectoryRepository.sol:22"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_struct(DirectoryFrame)3091_storage)dyn_storage": {
+            "label": "struct DirectoryFrame[]",
+            "numberOfBytes": "32"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_bytes1": {
+            "label": "bytes1",
+            "numberOfBytes": "1"
+          },
+          "t_bytes_storage": {
+            "label": "bytes",
+            "numberOfBytes": "32"
+          },
+          "t_contract(BaseWorks)1534": {
+            "label": "contract BaseWorks",
+            "numberOfBytes": "20"
+          },
+          "t_contract(UniqueIdGenerator)2842": {
+            "label": "contract UniqueIdGenerator",
+            "numberOfBytes": "20"
+          },
+          "t_mapping(t_address,t_struct(DirectoryFrame)3091_storage)": {
+            "label": "mapping(address => struct DirectoryFrame)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_string_memory_ptr,t_struct(DirectoryFrame)3091_storage)": {
+            "label": "mapping(string => struct DirectoryFrame)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_string_memory_ptr,t_struct(DirectoryInfoFrame)3102_storage)": {
+            "label": "mapping(string => struct DirectoryInfoFrame)",
+            "numberOfBytes": "32"
+          },
+          "t_string_memory_ptr": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_struct(DirectoryFrame)3091_storage": {
+            "label": "struct DirectoryFrame",
+            "members": [
+              {
+                "label": "Id",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "ParentId",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "Name",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "Creator",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "DateCreated",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "4"
+              }
+            ],
+            "numberOfBytes": "160"
+          },
+          "t_struct(DirectoryInfoFrame)3102_storage": {
+            "label": "struct DirectoryInfoFrame",
+            "members": [
+              {
+                "label": "DirectoryId",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "FilesCount",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "DirectoriesCount",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "Size",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "3"
+              }
+            ],
+            "numberOfBytes": "128"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        },
+        "namespaces": {}
+      }
+    },
+    "a6b0166c474fa21677546128fde8584290c8e373ff94f18c66a160b09445f65a": {
+      "address": "0xe2fd2C3614DEf994704c58d418AA7b082789BA5f",
+      "txHash": "0x887c1b023023cd55098ed570b469ac43a5540b056bddc2e636456c761c4cd31f",
+      "layout": {
+        "solcVersion": "0.8.17",
+        "storage": [
+          {
+            "label": "initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "BaseNameDeclaration",
+            "src": "contracts\\Repositories\\BaseNameDeclaration.sol:6"
+          },
+          {
+            "label": "notAllowed",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_bytes_storage",
+            "contract": "BaseNameDeclaration",
+            "src": "contracts\\Repositories\\BaseNameDeclaration.sol:7"
+          },
+          {
+            "label": "dot",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_bytes1",
+            "contract": "BaseNameDeclaration",
+            "src": "contracts\\Repositories\\BaseNameDeclaration.sol:8"
+          },
+          {
+            "label": "data",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_array(t_struct(FileFrame)3117_storage)dyn_storage",
+            "contract": "FileRepository",
+            "src": "contracts\\Repositories\\FileRepository.sol:13"
+          },
+          {
+            "label": "count",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_uint256",
+            "contract": "FileRepository",
+            "src": "contracts\\Repositories\\FileRepository.sol:14"
+          },
+          {
+            "label": "_baseWorks",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_contract(BaseWorks)1534",
+            "contract": "FileRepository",
+            "src": "contracts\\Repositories\\FileRepository.sol:15"
+          },
+          {
+            "label": "_uniqueIdGenerator",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_contract(UniqueIdGenerator)2842",
+            "contract": "FileRepository",
+            "src": "contracts\\Repositories\\FileRepository.sol:16"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_struct(FileFrame)3117_storage)dyn_storage": {
+            "label": "struct FileFrame[]",
+            "numberOfBytes": "32"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_bytes1": {
+            "label": "bytes1",
+            "numberOfBytes": "1"
+          },
+          "t_bytes_storage": {
+            "label": "bytes",
+            "numberOfBytes": "32"
+          },
+          "t_contract(BaseWorks)1534": {
+            "label": "contract BaseWorks",
+            "numberOfBytes": "20"
+          },
+          "t_contract(UniqueIdGenerator)2842": {
+            "label": "contract UniqueIdGenerator",
+            "numberOfBytes": "20"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_struct(FileFrame)3117_storage": {
+            "label": "struct FileFrame",
+            "members": [
+              {
+                "label": "Id",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "DirectoryId",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "Name",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "Extension",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "Creator",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "DateCreated",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "5"
+              }
+            ],
+            "numberOfBytes": "192"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        },
+        "namespaces": {}
+      }
+    },
+    "3d9cd80b631f963690e7d597c25db8d604c8a40563d8793763a108982e00ffe8": {
+      "address": "0xe60ae75E3eA6778a1c8bc895cb6E1Ba0c360B04D",
+      "txHash": "0x6dfb8d2b8266b8b74898f2638f076a70469ef35c8264b0265ed94d06a74d0822",
+      "layout": {
+        "solcVersion": "0.8.17",
+        "storage": [
+          {
+            "label": "directoryRepository",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_contract(DirectoryRepository)3953",
+            "contract": "ContractLogic",
+            "src": "contracts\\ContractLogic.sol:14"
+          },
+          {
+            "label": "fileRepository",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_contract(FileRepository)4290",
+            "contract": "ContractLogic",
+            "src": "contracts\\ContractLogic.sol:15"
+          },
+          {
+            "label": "initialized",
+            "offset": 20,
+            "slot": "1",
+            "type": "t_bool",
+            "contract": "ContractLogic",
+            "src": "contracts\\ContractLogic.sol:16"
+          }
+        ],
+        "types": {
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(DirectoryRepository)3953": {
+            "label": "contract DirectoryRepository",
+            "numberOfBytes": "20"
+          },
+          "t_contract(FileRepository)4290": {
+            "label": "contract FileRepository",
+            "numberOfBytes": "20"
+          }
+        },
+        "namespaces": {}
+      }
+    }
+  }
+}

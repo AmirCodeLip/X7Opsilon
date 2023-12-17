@@ -11,19 +11,21 @@ import "./BusinessHelper/BaseWorks.sol";
 import "./ViewModels/FileOutput.sol";
 
 contract ContractLogic {
-    UniqueIdGenerator private _uniqueIdGenerator;
     DirectoryRepository private directoryRepository;
     FileRepository private fileRepository;
-    IDT2 private _idt;
-    event RootResult(string id, address creator);
+    bool private initialized;
     event DirectoryCreated(string id, string directoryId);
     event FileUploaded(string id, string directoryId, string fileHash);
 
-    constructor() {
-        _idt = new IDT2();
-        _uniqueIdGenerator = new UniqueIdGenerator(_idt);
-        directoryRepository = new DirectoryRepository(_uniqueIdGenerator);
-        fileRepository = new FileRepository(_uniqueIdGenerator);
+    function setup(
+        address directoryRepositoryAddress,
+        address fileRepositoryAddress
+    ) public {
+        directoryRepository = DirectoryRepository(directoryRepositoryAddress);
+        fileRepository = FileRepository(fileRepositoryAddress);
+        initialized = true;
+        if (initialized) return;
+        initialized = true;
     }
 
     function createDirectory(
@@ -58,10 +60,7 @@ contract ContractLogic {
     }
 
     function getOrCreateRoot() public payable {
-        DirectoryFrame memory root = directoryRepository.getOrCreateRoot(
-            msg.sender
-        );
-        emit RootResult(root.Id, root.Creator);
+        directoryRepository.getOrCreateRoot(msg.sender);
     }
 
     function getRoot() public view returns (bool, DirectoryFrame memory) {

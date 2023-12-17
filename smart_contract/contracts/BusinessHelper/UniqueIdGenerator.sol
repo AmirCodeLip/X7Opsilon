@@ -4,12 +4,15 @@ import {IDT2} from "./IDT2.sol";
 
 contract UniqueIdGenerator {
     IDT2 private _idt;
+    uint256 counter;
+    bool private initialized;
 
-    constructor(IDT2 idt) {
-        _idt = idt;
+    function setup(address idtAddress) public {
+        _idt = IDT2(idtAddress);
+        if (initialized) return;
+        initialized = true;
+        counter = 1;
     }
-
-    uint256 counter = 1;
 
     function fixUChar(bytes1 i) private pure returns (bytes1) {
         if (i == 0x30) return 0x41;

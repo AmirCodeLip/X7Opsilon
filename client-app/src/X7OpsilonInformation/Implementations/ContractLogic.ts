@@ -22,6 +22,7 @@ export default class ContractLogic {
     // }
 
     async getRoot() {
+        debugger;
         let result = await this.contract.getRoot();
         if (result[0]) {
             console.log(null);

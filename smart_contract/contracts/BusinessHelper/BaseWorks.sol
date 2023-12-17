@@ -5,6 +5,8 @@ pragma solidity ^0.8;
  * @dev Binary operations.
  */
 contract BaseWorks {
+    function setup() public {}
+
     /**
      * `string` contains special characters.
      */

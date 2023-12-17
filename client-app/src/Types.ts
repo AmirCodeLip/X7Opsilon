@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
-import ContractLogic from "./X7OpsilonInformation/Interfaces/ContractLogic";
-import { X7FileProcess } from "./X7OpsilonInformation/Interfaces/ContractLogicTypes";
+import ContractLogic from "./X7OpsilonInformation/Implementations/ContractLogic";
+import { X7FileProcess } from "./X7OpsilonInformation/Implementations/ContractLogicTypes";
 
 export interface ContractContextType {
     applicationState: ApplicationStates;

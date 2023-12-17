@@ -1,0 +1,26 @@
+{
+    "BaseWorks": {
+        "contractName": "BaseWorks",
+        "address": "0x5338a989ceBBfE9f703Dba2587e6B027566C9F02"
+    },
+    "IDT2": {
+        "contractName": "IDT2",
+        "address": "0xA2DdA1e368A4D0DfB1Ea8b420B56d0367636E5ba"
+    },
+    "UniqueIdGenerator": {
+        "contractName": "UniqueIdGenerator",
+        "address": "0x0e196734388c69539e96A3f7498dEbc03F2875A5"
+    },
+    "DirectoryRepository": {
+        "contractName": "DirectoryRepository",
+        "address": "0x43e812229373b17b51076464375AeAD761607738"
+    },
+    "FileRepository": {
+        "contractName": "FileRepository",
+        "address": "0x80A4d40ab3CF1f69A5D7d1a810d8D80b46904895"
+    },
+    "ContractLogic": {
+        "contractName": "ContractLogic",
+        "address": "0xC3B9caAf849fF0764Ec704eE2C3743D2b8B0a0D1"
+    }
+}

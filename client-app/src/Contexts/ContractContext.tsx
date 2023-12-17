@@ -28,6 +28,7 @@ export const ContractContextProvider = (params: { children: JSX.Element }) => {
             contractAccounts(new ethers.Contract(ContractLogicAddress, ContractLogicAbi, signer));
             state = ApplicationStates.metamaskConnected;
         } catch (ex: any) {
+            debugger;
             if (ex.error && ex.error.code == -32002) {
                 setTimeout(metamaskConnection, 5000);
             } else {
