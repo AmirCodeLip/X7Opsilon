@@ -4,24 +4,23 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 import "../Entities/FileFrame.sol";
 import "../Entities/DirectoryInfoFrame.sol";
 import "./BaseNameDeclaration.sol";
-import {UniqueIdGenerator} from "../BusinessHelper/UniqueIdGenerator.sol";
-import "../BusinessHelper/BaseWorks.sol";
+import {UniqueIdGenerator} from "../BaseImplementations/UniqueIdGenerator.sol";
+import "../BaseImplementations/BaseWorks.sol";
 import "../ViewModels/FileOutput.sol";
 
 contract FileRepository is BaseNameDeclaration {
     //data of files
     FileFrame[] private data;
     uint256 private count;
-    BaseWorks private _baseWorks;
     UniqueIdGenerator private _uniqueIdGenerator;
 
-    function setup(
+    constructor(
         address uniqueIdGeneratorAddress,
         address baseWorksAddress
     ) public {
         _uniqueIdGenerator = UniqueIdGenerator(uniqueIdGeneratorAddress);
-        _baseWorks = BaseWorks(baseWorksAddress);
-        baseSetup();
+        // _baseWorks = BaseWorks(baseWorksAddress);
+        baseSetup(baseWorksAddress);
         if (initialized) return;
         initialized = true;
         count = 0;
@@ -67,39 +66,10 @@ contract FileRepository is BaseNameDeclaration {
         return fileId;
     }
 
-    function separateNameExe(
-        string memory fullName
-    ) public view returns (string memory, string memory) {
-        uint256 extensionCount = 0;
-        bytes memory extension = new bytes(50);
-        bytes memory b_fullName = bytes(fullName);
-        uint256 i = (b_fullName.length - 1);
-        for (; ; i--) {
-            bytes1 b_char = b_fullName[i];
-            if (b_char == 0x2E) {
-                break;
-            }
-            if (extensionCount > 49) {
-                revert unsupportedName();
-            }
-            extension[extensionCount] = b_char;
-            extensionCount++;
-            if (i == 0) {
-                revert unsupportedName();
-            }
-        }
-        extension = _baseWorks.copyBytes(extension, extensionCount);
-        extension = _baseWorks.reverseBytes(extension);
-        uint256 nameCount = (b_fullName.length - extensionCount - 1);
-        bytes memory fileName = _baseWorks.copyBytes(b_fullName, nameCount);
-        return (string(fileName), string(extension));
-    }
-
     function getByIndex(
         uint256 index
     ) public payable returns (FileFrame memory) {
         FileFrame storage file = data[index];
-
         return file;
     }
 }

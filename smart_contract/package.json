@@ -12,6 +12,7 @@
   "scripts": {
     "test": "npx hardhat test scripts/test.js",
     "deploy": "npx hardhat run --network polygonedge scripts/deploy.js",
+    "deploy_local": "npx hardhat run --network deploy_local scripts/deploy.js",
     "build": "npx hardhat compile"
   },
   "devDependencies": {

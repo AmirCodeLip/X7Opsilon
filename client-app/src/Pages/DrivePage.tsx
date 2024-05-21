@@ -2,7 +2,7 @@ import React from "react";
 import { ContractContext } from "./../Contexts/ContractContext";
 import { SideModalState } from "./../Types";
 import { Icons } from "../ThemeProvider";
-import { DirectoryBlock, FileBlock } from "../X7OpsilonInformation/Implementations/ContractLogicTypes";
+import { DirectoryBlock, FileBlock } from "X7OpsilonClient/Implementations/ContractLogicTypes";
 import RightSideModal from "./RightSideModal"
 
 export default function DrivePage() {
@@ -18,8 +18,11 @@ export default function DrivePage() {
     fileInput.onchange = async function (this: any) {
         for (let i = 0; i < fileInput.files!.length; i++) {
             let file = fileInput.files?.item(i);
-            let response = await contractContext.fileManager.uploadFile(directoryID, file!);
-            contractContext.addUploadProsses(response);
+            console.log(contractContext.account);
+            debugger;
+
+            // let response = await contractContext.fileManager.uploadFile(directoryID, file!);
+            // contractContext.addUploadProsses(response);
         }
     }
 

@@ -4,15 +4,14 @@ pragma solidity ^0.8;
 import {DirectoryFrame} from "../Entities/DirectoryFrame.sol";
 import {DirectoryInfoFrame} from "../Entities/DirectoryInfoFrame.sol";
 import "./BaseNameDeclaration.sol";
-import "../BusinessHelper/BaseWorks.sol";
-import {UniqueIdGenerator} from "../BusinessHelper/UniqueIdGenerator.sol";
+import "../BaseImplementations/BaseWorks.sol";
+import {UniqueIdGenerator} from "../BaseImplementations/UniqueIdGenerator.sol";
 
 contract DirectoryRepository is BaseNameDeclaration {
     //data of files
     DirectoryFrame[] private data;
     uint256 private count;
     UniqueIdGenerator private _uniqueIdGenerator;
-    BaseWorks private _baseWorks;
     event RootCreated(string id, address creator);
     //get root by sender
     mapping(address => DirectoryFrame) private rootsMap;
@@ -21,13 +20,12 @@ contract DirectoryRepository is BaseNameDeclaration {
     //get {DirectoryFrame} by directory id
     mapping(string => DirectoryFrame) private directoriesMap;
 
-    function setup(
+    constructor(
         address uniqueIdGeneratorAddress,
         address baseWorksAddress
     ) public {
         _uniqueIdGenerator = UniqueIdGenerator(uniqueIdGeneratorAddress);
-        _baseWorks = BaseWorks(baseWorksAddress);
-        baseSetup();
+        baseSetup(baseWorksAddress);
         if (initialized) return;
         initialized = true;
         count = 0;
@@ -154,7 +152,7 @@ contract DirectoryRepository is BaseNameDeclaration {
         return (isNull, directoryInfo);
     }
 
-    //get directiry and if it's don't have id return root
+    //get directiry by id and if it's don't have id return root
     function getDirectoryOrRoot(
         address user,
         string memory id

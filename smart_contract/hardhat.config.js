@@ -20,6 +20,19 @@ module.exports = {
         privateKey,
       ],
     },
+    deploy_local: {
+      gasPrice: 5242880,
+      settings: {
+        optimizer: {
+          enabled: true,
+          runs: 200
+        }
+      },
+      url: "http://127.0.0.1:8545",
+      accounts: [
+        privateKey,
+      ],
+    },
   },
   solidity: {
     version: "0.8.17",

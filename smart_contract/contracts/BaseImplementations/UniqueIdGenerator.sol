@@ -7,7 +7,7 @@ contract UniqueIdGenerator {
     uint256 counter;
     bool private initialized;
 
-    function setup(address idtAddress) public {
+    constructor(address idtAddress) {
         _idt = IDT2(idtAddress);
         if (initialized) return;
         initialized = true;

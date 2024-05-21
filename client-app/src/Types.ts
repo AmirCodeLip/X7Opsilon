@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
-import ContractLogic from "./X7OpsilonInformation/Implementations/ContractLogic";
-import { X7FileProcess } from "./X7OpsilonInformation/Implementations/ContractLogicTypes";
+import ContractLogic from "X7OpsilonClient/Implementations/ContractLogic";
+import { X7FileProcess } from "X7OpsilonClient/Implementations/ContractLogicTypes";
 
 export interface ContractContextType {
     applicationState: ApplicationStates;
@@ -14,6 +14,7 @@ export interface ContractContextType {
     setProvider: React.Dispatch<React.SetStateAction<ethers.BrowserProvider | null>>;
     setApplicationState: React.Dispatch<React.SetStateAction<ApplicationStates>>;
     addUploadProsses: (uploadProcess: X7FileProcess) => void;
+    account: string | null
 }
 
 declare global {

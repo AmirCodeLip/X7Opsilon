@@ -13,11 +13,7 @@ function readJson(path) {
         });
     });
 }
-
-readJson('./scripts/deployconfig.json').then(deployconfig => {
-    deploy(deployconfig).catch((error) => {
-        console.error(error);
-        process.exitCode = 1;
-    });
+deploy().catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
 });
-

@@ -9,17 +9,18 @@ contract BaseWorks {
 
     /**
      * `string` contains special characters.
+     * for example we want to see hello is contain o or not
      */
     function strContains(
-        string memory inputCase,
+        string memory text,
         bytes memory chars
     ) internal pure returns (bool) {
-        bytes memory b_inputCase = bytes(inputCase);
+        bytes memory b_text = bytes(text);
         bool result = false;
-        for (uint256 i = 0; i < b_inputCase.length; i++) {
+        for (uint256 i = 0; i < b_text.length; i++) {
             for (uint256 j = 0; j < chars.length; j++) {
                 //string is contains char
-                if (b_inputCase[i] == chars[j]) {
+                if (b_text[i] == chars[j]) {
                     result = true;
                     break;
                 }
@@ -88,4 +89,5 @@ contract BaseWorks {
         }
         return true;
     }
+
 }
