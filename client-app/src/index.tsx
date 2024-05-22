@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+// import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ContractContextProvider } from "./Contexts/ContractContext";
 import { getThemeColor } from "./ThemeProvider";
 import { CookiesProvider } from 'react-cookie';
+import { MetaMaskSDK } from "@metamask/sdk";
+
 
 
 window.changeTheme = function (themeName: string) {
@@ -18,6 +20,22 @@ window.changeTheme("darkBlueTheme");
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+function App() {
+
+  const MMSDK = new MetaMaskSDK({
+    dappMetadata: {
+      name: "JavaScript example dapp",
+      url: window.location.href,
+    },
+    infuraAPIKey: process.env.INFURA_API_KEY,
+    // Other options.
+  });
+  debugger;
+  // You can also access via window.ethereum.
+  const ethereum = MMSDK.getProvider();
+  return <div>test</div>
+}
 
 root.render(
   <ContractContextProvider>

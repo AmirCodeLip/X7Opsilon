@@ -1,9 +1,11 @@
 import React from "react";
 import { ContractContextType, ApplicationStates, StatusInfo, SideModalState } from "../Types";
 import { ethers } from "ethers";
-import { ContractLogicAddress, ContractLogicAbi } from "X7OpsilonClient/ContractData";
-import ContractLogic from 'X7OpsilonClient/Implementations/ContractLogic'
-import { X7FileProcess } from "X7OpsilonClient/Implementations/ContractLogicTypes";
+import { ContractLogicAddress, ContractLogicAbi } from "../X7OpsilonClient/src/ContractData";
+import ContractLogic from '../X7OpsilonClient/src/ContractLogic'
+import { X7FileProcess } from "../X7OpsilonClient/src/ContractLogicTypes";
+import { MetaMaskSDK } from "@metamask/sdk";
+
 
 const { ethereum } = window;
 export const ContractContext = React.createContext<ContractContextType | null>(null)
@@ -18,15 +20,36 @@ export const ContractContextProvider = (params: { children: JSX.Element }) => {
     async function metamaskConnection(fromTimeout: boolean = true) {
         let state = ApplicationStates.metamaskConnecting;
         try {
-            if ((fromTimeout && window.connectionCancellation === "MetamaskCanceled"))
-                return;
-            let accountsPromise = provider!.send("eth_requestAccounts", []);
-            let accounts = await accountsPromise;
-            setAccount(accounts[0]);
-            const signer = await provider!.getSigner();
-            const address = await signer.getAddress();
-            contractAccounts(new ethers.Contract(ContractLogicAddress, ContractLogicAbi, signer));
-            state = ApplicationStates.metamaskConnected;
+            const MMSDK = new MetaMaskSDK({
+                dappMetadata: {
+                  name: "Example JavaScript Dapp",
+                  url: window.location.href,
+                },
+                infuraAPIKey: process.env.INFURA_API_KEY,
+                // Other options.
+              });
+              
+              // You can also access via window.ethereum.
+              const ethereum = MMSDK.getProvider();
+              
+              debugger;
+              ethereum!.request({ method: "eth_requestAccounts", params: [] });
+
+
+            // if ((fromTimeout && window.connectionCancellation === "MetamaskCanceled"))
+            //     return;
+
+
+            // debugger;
+
+
+            // let accountsPromise = provider!.send("eth_requestAccounts", []);
+            // let accounts = await accountsPromise;
+            // setAccount(accounts[0]);
+            // const signer = await provider!.getSigner();
+            // const address = await signer.getAddress();
+            // contractAccounts(new ethers.Contract(ContractLogicAddress, ContractLogicAbi, signer));
+            // state = ApplicationStates.metamaskConnected;
         } catch (ex: any) {
             if (ex.error && ex.error.code == -32002) {
                 setTimeout(metamaskConnection, 5000);

@@ -2,7 +2,7 @@ import React from "react";
 import { ContractContext } from "./../Contexts/ContractContext";
 import { SideModalState } from "./../Types";
 import { Icons } from "../ThemeProvider";
-import { DirectoryBlock, FileBlock } from "X7OpsilonClient/Implementations/ContractLogicTypes";
+import { DirectoryBlock, FileBlock } from "../X7OpsilonClient/src/ContractLogicTypes";
 import RightSideModal from "./RightSideModal"
 
 export default function DrivePage() {
